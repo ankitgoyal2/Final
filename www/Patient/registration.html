@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+		
+    <title> Registration Form</title>   
+ 
+    <link rel="stylesheet" href="../css/register.css">
+    <!-- <script src="../js/register.js"></script> -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="../https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="../css/forAll.css">
+   <style>
+            
+        
+      input[type=radio]{
+          margin-right:10px;
+          margin-top:10px;
+         transform:scale(1.3);
+    }
+    .container{
+        max-width: 100%!important;
+    }
+ 
+
+    #register{
+        margin-top:30px;
+    }
+
+    form{
+        padding-top: 0px!important;
+    }
+
+      
+      </style>
+
+    </head>
+
+    <body>
+    <div class="container">
+        <div class="row">
+            <div class="signup-form col-12">
+                <form onsubmit="data();">
+                    <h2>Register</h2>
+                   <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="F_NAME" name="F_NAME" placeholder="First Name" autofocus aria-required="true" class="form-control" required> 
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="L_NAME">Last Name</label>
+                            <input type="text" id="L_NAME" name="L_NAME" placeholder="Last Name" autofocus class="form-control" required>
+                    </div>
+                   </div>
+                  
+                   <div class="form-group ">
+                    <label for="EMAIL">Email </label>
+                    <input type="email" id="EMAIL" name="EMAIL" placeholder="Email" class="form-control" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="PASS" >Password</label>
+                        <input type="password" id="PASS" name="PASS" placeholder="Password" class="form-control" required minlength="6">
+                        <span class="help-block flash" id="errPass"></span>
+                </div>
+    
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                        <input type="password" id="confirm_pass" name="confirm_PASS" placeholder="Confirm Password" class="form-control" required minlength="6">
+                        <span class="help-block flash" id="errCPass"></span>
+                </div>
+    
+                <div class="form-group">
+                    <label for="DOB">Date of Birth</label>
+                        <input type="date" id="DOB"  name="DOB" class="form-control "  required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="phoneNumber" >Phone number </label>
+                        <input type="phone" id="MOBILE" name="MOBILE" placeholder="Phone number" class="form-control " required minlength="10" maxlength="10">
+                        <span class="help-block flash">Your phone number won't be disclosed anywhere </span>
+                </div>
+                
+                <div class="form-group">
+                        <p>Gender</p>
+                        <div class="row">
+                            <label class="radio-inline col-sm-6">
+                                <input type="radio" name="GENDER" id="gender1" value="Female" required>  Female
+                              </label>
+                              <label class="radio-inline col-sm-6">
+                                <input type="radio" name="GENDER" id="gender" value="Male" required>  Male
+                              </label>
+                        </div>              
+                </div>
+                
+                <div class="form-group ">
+                    <label for="lat"> Location</label>
+                    
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label > Latitude</label>
+                            <!-- <p class="form-control">Latitude <p id="latitude"></p></p> -->
+                            <p id="latitude" class="form-control"></p>
+                        </div>
+
+                        <div class="form-group col-sm-6">
+                            <label > Longitude</label>
+                            <p id="longitude" class="form-control"></p>
+                            
+                        </div>
+                    
+
+                    </div>
+                </div>
+
+    
+                <div class="form-group">
+                    <label for="file">Upload Image</label><br>
+                    <input type="file" id="file" name="file" accept="image/*" class="form--control-file"  required>
+                </div>
+             
+                <button id="register" class="btn btn-lg btn-main btn-block" type="submit">
+                    REGISTER
+                  </button>
+                  <hr>
+    
+                  <div class="text-center" >Have an account? <a href="../Patient/login2.html" class="sign-in-button">Login</NavLink></div>
+    
+                </form>
+            </div>
+        </div>
+    </div>
+  
+    
+	
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+
+    <script>
+        var x = document.getElementById("latitude");
+        var y = document.getElementById("longitude");
+
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+               // x.innerHTML = "Geolocation is not supported by this browser.";
+               // y.innerHTML = "Geolocation is not supported by this browser.";
+
+            }
+        }
+
+        function showPosition(position) {
+            x.innerText = position.coords.latitude;
+            y.innerText = position.coords.longitude;
+
+            // x.innerHTML = "Latitude: " + position.coords.latitude +
+            //     "<br>Longitude: " + position.coords.longitude;
+        }
+
+        getLocation();
+    </script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js"></script>
+    <script>
+        var firebaseConfig = {
+                apiKey: "AIzaSyC9woJZ3wYGtPLPCAGax6Qt7Nkgesiu-lc",
+                authDomain: "finalyearproject-aa41b.firebaseapp.com",
+                projectId: "finalyearproject-aa41b",
+                storageBucket: "finalyearproject-aa41b.appspot.com",
+                messagingSenderId: "305270179983",
+                appId: "1:305270179983:web:d854bb445292b9aaeb48fa",
+                measurementId: "G-K5MZ32XPZX"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+
+    </script>
+
+    <!-- <script src="../js/registration.js"></script> -->
+    <script src="../js/app.js"></script>
+    <script src="../js/registration.js"></script>
+    </body>
+</html>

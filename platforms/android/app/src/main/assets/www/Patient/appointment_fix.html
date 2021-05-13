@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Set Appointment</title>
+ <link rel="stylesheet" href="../css/appointment.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="../css/forAll.css">
+ <style>
+     .signup-form h2:before, .signup-form h2:after{
+         width:10%;
+     }
+     
+     input[type=radio]{
+          margin-right:10px;
+          margin-top:10px;
+         transform:scale(1.3);
+    }
+
+    .container{
+        max-width:100%!important;
+    }
+
+
+
+
+
+ </style>
+
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+
+</script>
+
+
+
+
+</head>
+<body>
+    
+    <div class="container">
+      <div class="signup-form">
+        <form onsubmit="goForPayment();" method="POST">
+            <h2>Book Appointment</h2>
+           
+            <!-- Date -->
+            <div class="form-group">
+              <label for="appDate">Appointment Date*</label>
+                      <input required type="date" id="appDate" placeholder="Appointment Date" class="form-control " autofocus>
+          </div>
+
+            <!-- Timings -->
+            <div class="form-group" >
+                <label for="appTime" >Timing</label>
+                    <select class="form-control"  id="appTime" required>
+                    <option value="" disabled selected hidden>Chooose your timings</option>
+                    <optgroup label="Morning Shift">
+                        <option>7:00 - 7:10 AM</option>
+                        <option>7:15 - 7:25 AM</option>
+                        <option>7:30 - 7:40 AM</option>
+                        <option>7:45 - 7:55 AM</option>
+                        <option>8:00 - 8:10 AM</option>
+                        <option>8:15 - 8:25 AM</option>
+                        <option>8:30 - 8:40 AM</option>
+                        <option>8:45 - 8:55 AM</option>option>
+                        <option>9:00 - 9:10 AM</option>
+                        <option>9:15 - 9:25 AM</option>
+                        <option>9:30 - 9:40 AM</option>
+                        <option>9:45 - 9:55 AM</option>
+                    </optgroup>
+    
+                    <optgroup label="Afternoon Shift">
+                       <option>12:00 - 12:10 PM</option>
+                       <option>12:15 - 12:25 PM</option>
+                       <option>12:30 - 12:40 PM</option>
+                       <option>12:45 - 12:55 PM</option>
+                       <option>1:00 - 1:10 PM</option>
+                       <option>1:15 - 1:25 PM</option>
+                       <option>1:30 - 1:40 PM</option>
+                       <option>1:45 - 1:55 PM</option>
+                       <option>2:00 - 2:10 PM</option>
+                       <option>2:15 - 2:25 PM</option>
+                       <option>2:30 - 2:40 PM</option>
+                       <option>2:45 - 2:55 PM</option>option>
+                    </optgroup>
+                   
+                    <optgroup label="Evening Shift">
+                        <option>4:00 - 4:10 PM</option>
+                        <option>4:15 - 4:25 PM</option>
+                        <option>4:30 - 4:40 PM</option>
+                        <option>4:45 - 4:55 PM</option>
+                            <option>5:00 - 5:10 PM</option>
+                            <option>5:15 - 5:25 PM</option>
+                            <option>5:30 - 5:40 PM</option>
+                            <option>5:45 - 5:55 PM</option>
+                                <option>6:00 - 6:10 PM</option>
+                                <option>6:15 - 6:25 PM</option>
+                                <option>6:30 - 6:40 PM</option>
+                                <option>6:45 - 6:55 PM</option>
+                    </optgroup>
+                  
+                    </select>
+            </div>
+
+            <!-- Consultation Type -->
+            <div class="form-group">
+                <label>Consultation Type</label>
+                <div class="row">
+                    <label class="radio-inline col-sm-6">
+                        <input type="radio" name="consType" id="video" value="Video" required>Video</label>
+                      <label class="radio-inline col-sm-6">
+                        <input  type="radio" name="consType" id="audio" value="Audio" required>Audio</label>
+                </div>   
+            </div>
+
+            <div class="form-group">
+                <label for="fullName" > Full Name</label>
+                    <input required type="text" id="fullName" placeholder="Full Name" class="form-control" autofocus disabled>
+            </div>
+
+            <!-- Phone and Email -->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="phoneNumber">Mobile </label>
+                        <input required type="phoneNumber" id="phoneNumber" placeholder="Phone number" class="form-control"  disabled>
+                    </div>
+                    <div class="col-6">
+                        <label for="email">Email </label>
+                        <input required type="email" id="email" placeholder="Email" class="form-control" name= "email" disabled>
+                    </div>
+                </div> 
+            </div>
+
+            <!-- Symptoms -->
+            <div class="form-group">
+                <label for="symptons" >Symptoms:</label>
+                    <select class="form-control" id="symptons"  required>
+                        <option selected>None</option>
+                        <option>Earache</option>
+                        <option>Cold</option>
+                        <option>Cough</option>
+                        <option>Diarrhea</option>
+                        <option>Fever</option>
+                        <option>Headache</option>
+                        <option>Pain</option>
+                        <option>Rash</option>
+                        <option>Skin Infection</option>
+                        <option>Sore Throat</option>
+                        <option>Vomiting</option>
+                    </select>
+            </div>
+
+              <!--Allergies-->
+        <div class="form-group">
+            <label for="allergies" >Select Allergies:</label>
+                <select class="form-control" id="allergies"  required>
+                    <option selected>No known Allergies</option>
+                    <option>Penicillin</option>
+                    <option>NSAIDs</option>
+                    <option>Anticonvulsants</option>
+                    <option>Sulfonamides</option>
+                    <option>Others</option>
+                </select>
+        </div>
+
+          <!--upload symptons -->
+        <div class="form-group">
+                <label for="filea" >Symptoms Image</label><br>
+                <input required type="file" id="filea" name="img" class="form=control-file" >
+        </div>
+
+            <!--Medical Certifi-->
+            <div class="form-group">
+              <label>Certificate:</label>
+                  <div class="row">
+                          <label class="radio-inline col-6">
+                              <input required type="radio" name="medCerti"  id="yesRadio" value="Yes" required>  Yes
+                          </label>
+                          <label class="radio-inline col-6">
+                              <input required type="radio" name="medCerti"  id="noRadio" value="No" required>  No
+                          </label>
+                  </div>
+          </div>
+      
+      
+        <!--other complaint-->
+          <div class="form-group" >
+              <label for="otherComplaint">Other Details: </label>
+                  <input type="text" id="otherComplaint" placeholder="Other Complaints" class="form-control">
+          </div>
+
+           <!--Health history-->
+        <div class="form-group" >
+            <label for="healthHistory" >Health History:</label>
+                <select class="form-control" id="healthHistory"  required>
+                <option>None</option>
+                <option>Diabetes</option>
+                <option>Heart Diseases</option>
+                <option>Hypertension</option>
+                <option>Hyperlipidemia</option>
+                <option>Osteoarthritis</option>
+                <option>ASthma/COPD/Bronchitis</option>
+                <option>Cancer</option>
+                <option>Alcohol/Drug Overdose</option>
+                <option>Any HIV or STD/ Related Ailemnts</option>
+                </select>
+        </div>
+
+        <button type="submit" class="btn-main btn-lg btn btn-block" id="bookApp">
+            Book Appointment
+        </button>
+        
+        </form>
+      </div>
+    </div>
+
+  
+
+<!--Script tags of bootstrap-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="../js/appointment_fix.js"></script>
+
+
+</body>
+</html>

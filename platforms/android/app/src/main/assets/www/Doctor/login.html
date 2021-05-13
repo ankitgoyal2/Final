@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       
+       
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../css/login.css">
+         <link rel="stylesheet" type="text/css" href="../css/login2.css">
+         <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="../css/forAll.css">
+
+
+        <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js"></script>
+        <script>
+          var firebaseConfig = {
+            apiKey: "AIzaSyC9woJZ3wYGtPLPCAGax6Qt7Nkgesiu-lc",
+            authDomain: "finalyearproject-aa41b.firebaseapp.com",
+            projectId: "finalyearproject-aa41b",
+            storageBucket: "finalyearproject-aa41b.appspot.com",
+            messagingSenderId: "305270179983",
+            appId: "1:305270179983:web:d854bb445292b9aaeb48fa",
+            measurementId: "G-K5MZ32XPZX"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          firebase.analytics();
+
+        </script>
+
+       
+        <title>Login Form</title>
+
+    </head>
+   
+ <script>
+      const disableButton = ()=>{
+            const button = document.getElementById("login");
+            button.innerText= "Logging In...";
+            button.disabled = true;
+            
+        }
+
+        const enableButton = ()=>{
+            const button = document.getElementById("login");
+            button.innerText= "Login";
+            button.disabled = false;
+        }
+
+  // function test(){
+  // //alert("hahhaah");
+  // event.preventDefault();
+
+  // disableButton();
+  
+  // var user = document.getElementById("username").value;
+  // var password = document.getElementById("password").value;
+ 
+ 
+  // var data = null;
+ 
+  // var xhr = new XMLHttpRequest();
+  // xhr.withCredentials = true;
+ 
+  // xhr.addEventListener("readystatechange", function () {
+  //   if (this.readyState === 4) {
+  //     console.log(this.responseText);
+  //     var res = this.responseText;
+  //     var a = 0;
+  //     //alert (res+a);
+     
+     
+  //     if(res==1){  
+  //       var storage = window.localStorage;
+  //      storage.setItem('email',user);
+  //      console.log(storage.getItem('email'))
+  //       window.location = "doctor_dash.html";
+
+  //     }  
+  //     else{  
+  //       enableButton();
+  //     alert("Please check your username and password");
+  //     }
+ 
+ 
+  //   }
+  // });
+ 
+  // xhr.open("POST", "https://connectingit.in/ords/shoppergoldeneye/core/drlogin/");
+  // xhr.setRequestHeader("username", user);
+  // xhr.setRequestHeader("password", password);
+  // xhr.setRequestHeader("cache-control", "no-cache");
+  // xhr.setRequestHeader("postman-token", "bc4ce2b5-d777-85ac-3f08-b41e067d472d");
+  // xhr.send(data);
+  // }
+
+  function test()
+  {
+      event.preventDefault();
+
+      disableButton();
+
+      var email = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      console.log("success");
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+        alert("login successfully");
+        console.log("email loggedin successfully");
+        window.location = "doctor_dash.html";
+        // ...
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert("Please check your username and password");
+        console.log(errorMessage);
+        enableButton();
+      });
+  }
+
+    </script>
+     
+    <body>
+
+      <div class="centre_box">
+
+      <div class="signin-form">
+        <form onsubmit="test();" method="post">
+            <img src="../img\doctor.jfif" id="profile_pic">
+            <h2 cl>Doctor Login</h2>
+            <div class="form-group">
+            <input type="email" class="form-control" placeholder="Username" required="required" id="username"/>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" required="required" id="password"/>
+            </div>    
+            <div class="form-group">
+                <button id="login" type="submit" class="btn btn-main btn-lg btn-block">Login</button>
+            </div>
+            <hr>
+            <div class="text-center" >Forgot Password? <a href="d_forgot_password.html" class="signup-button">Forgot Password</a></div>
+        </form>
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+        <script type="text/javascript" src="../cordova.js"></script>
+        <script type="text/javascript" src="../js/login.js"></script>
+    </body>
+</html>

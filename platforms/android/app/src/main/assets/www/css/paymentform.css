@@ -1,0 +1,189 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body{
+	background-color:#E4E4E4;
+    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+	font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
+    font-size:20px;
+	background-color: #fff;
+	padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-right, 0px);
+    width:100%;
+}
+
+.app-container{
+	height: 550px;
+	width: 400px;
+	background-color: #F2F3F7;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%,-50%);
+
+}
+
+.top-box{
+	height: 50px;
+	background-color: #3d8f8c;
+	
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.top-box p{
+	text-align: center;
+	padding-top: 20px;
+	color: white;
+}
+
+
+
+.middle-box{
+	height: 150px;
+	background-color:#b3e3e8;
+	margin: -70px 30px 20px;
+	color: white;
+	text-align: center;
+	font-size: 12px;
+	border-radius: 10px;
+
+}
+
+.middle-box h1{
+	padding-top: 30px;
+	padding-bottom: 30px;
+	font-size: 50px;
+	font-weight: normal;
+}
+
+.middle-box h1 span{
+	font-size: 20px;
+	margin-left: 5px;
+	bottom: 18px;
+	position: relative;
+}
+
+.payment{
+	color: white;
+	margin: 5px 30px;
+	height: 35px;
+	width: 340px;
+	background-color: #3d8f8c;
+	border: none;
+	cursor: pointer;
+}
+
+.card-details{
+	background: #F2F3F7;
+	color: #555;
+	margin: 10px 30px;
+	padding: 10px;
+}
+
+.card-details p{
+	font-size: 14px;
+}
+.card-details label{
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.card-number{
+	margin-top: 10px;
+
+}
+
+.date-number{
+	margin-top: 10px;
+	display: inline-block;
+}
+
+.cvc-number{
+	margin-top: 10px;
+	display: inline-block;
+	float: none;
+}
+
+.name-number{
+	margin-top: 10px;
+
+}
+
+.amount-number{
+	margin-top: 10px;
+
+}
+
+.card-number-field, .name-field{
+	width: 308px;
+	height: 35px;
+
+
+}
+
+.date-field, .cvc-field{
+	width: 80px;
+
+}
+
+.card-details input{
+
+	border: 1px solid #ccc;
+	height: 30px;
+	padding: 5px;
+	font-size: 14px;
+
+}
+
+.card-details input::placeholder{
+
+	color: #ccc;
+}
+
+.pay-btn{
+	color: white;
+	margin-top: 20px;
+	height: 35px;
+	width: 340px;
+	background-color: #3d8f8c;
+	border: none;
+	cursor: pointer;
+}
+
+.btn-main{
+    color:white;
+    background-color: #3d8f8c;
+    border-color: #3d8f8c;
+    
+
+  }
+  .btn-main:hover{
+    color:white;
+    background-color: #266462;
+    border-color: #266462;
+  }
+
+  .btn-main:focus{
+    color:white;
+    background-color: #266462;
+    border-color: #266462;
+  }
+
+  .btn-main:disabled{
+    color:white;
+    background-color: #266462;
+    border-color: #266462;
+  }
+  .btn-main:active{
+    color:white;
+    background-color: #266462;
+    border-color: #266462;
+  }
