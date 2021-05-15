@@ -1,10 +1,4 @@
 
-
-
- 
-
-  
-  
   const disableButton = ()=>{
       const button = document.getElementById("register");
       button.innerText= "Registering...";
@@ -33,6 +27,7 @@ function data(){
         
     //Disabling Button and show spinner
     event.preventDefault();
+    disableButton();
 
 
     if(validateConfirmPassword()==false){ enableButton(); return;} 
@@ -45,10 +40,10 @@ function data(){
     var lastname = document.getElementById("L_NAME").value;
     var email = document.getElementById("EMAIL").value;
     var pass = document.getElementById("PASS").value;
-    var dob = document.getElementById("DOB").value;
+    // var dob = document.getElementById("DOB").value;
     var phone = document.getElementById("MOBILE").value;
-    var genders = document.getElementsByName("GENDER");
-    var selectedGender;
+    // var genders = document.getElementsByName("GENDER");
+    // var selectedGender;
 
     var data = {
       name : fname+' '+lastname,
@@ -62,14 +57,18 @@ function data(){
 
     axios.post('http://localhost:3000/p/register', data)
     .then(response => {
-      //  save token to local storage
+      
       alert('Patient Registered Successfully');
+      //  save token to local storage
       localStorage.setItem('token',response.data.token);
       console.log('token saved in localstorage');
+
+      window.location = "login2.html";
     })
     .catch(error =>{
       console.log("some error occured");
       console.log(error);
+      enableButton();
     })
 
 

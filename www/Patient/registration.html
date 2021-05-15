@@ -93,25 +93,7 @@
                         </div>              
                 </div> -->
                 
-                <div class="form-group ">
-                    <label for="lat"> Location</label>
-                    
-                    <div class="row">
-                        <div class="form-group col-sm-6">
-                            <label > Latitude</label>
-                            <!-- <p class="form-control">Latitude <p id="latitude"></p></p> -->
-                            <p id="latitude" class="form-control"></p>
-                        </div>
-
-                        <div class="form-group col-sm-6">
-                            <label > Longitude</label>
-                            <p id="longitude" class="form-control"></p>
-                            
-                        </div>
-                    
-
-                    </div>
-                </div>
+                
 
     
                 <!-- <div class="form-group">
@@ -136,31 +118,7 @@
     <!-- <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script> -->
 
-    <script>
-        var x = document.getElementById("latitude");
-        var y = document.getElementById("longitude");
-
-
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-               // x.innerHTML = "Geolocation is not supported by this browser.";
-               // y.innerHTML = "Geolocation is not supported by this browser.";
-
-            }
-        }
-
-        function showPosition(position) {
-            x.innerText = position.coords.latitude;
-            y.innerText = position.coords.longitude;
-
-            // x.innerHTML = "Latitude: " + position.coords.latitude +
-            //     "<br>Longitude: " + position.coords.longitude;
-        }
-
-        getLocation();
-    </script>
+    
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <!-- Add Firebase products that you want to use
