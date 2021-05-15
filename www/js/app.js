@@ -14,35 +14,35 @@
             var email = txtemail.value;
             var pass = txtpass.value;
 
-            const auth = firebase.auth();
-            console.log("success");
+            //const auth = firebase.auth();
+            //console.log("success");
 
         
 
-            firebase.auth().createUserWithEmailAndPassword(email, pass)
-                .then((userCredential) => {
-                    // Signed in 
+            // firebase.auth().createUserWithEmailAndPassword(email, pass)
+            //     .then((userCredential) => {
+            //         // Signed in 
 
-                    //redirect to dashbord now
-                    var user = userCredential.user;
-                    if(window.confirm('Successfully Registered')){
-                           window.location.href="login2.html";
-                         }
+            //         //redirect to dashbord now
+            //         var user = userCredential.user;
+            //         if(window.confirm('Successfully Registered')){
+            //                window.location.href="login2.html";
+            //              }
                          
-                    console.log("email registered successfully");
-                    registerDone();
+            //         console.log("email registered successfully");
+            //         registerDone();
                     
-                    // ...
-                })
-                .catch((error) => {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
+            //         // ...
+            //     })
+            //     .catch((error) => {
+            //         var errorCode = error.code;
+            //         var errorMessage = error.message;
 
-                    console.log(errorMessage);
+            //         console.log(errorMessage);
 
-                    //show message alert
-                    // ..
-                });
+            //         //show message alert
+            //         // ..
+            //     });
 
         });
 

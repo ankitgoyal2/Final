@@ -1,25 +1,24 @@
 
 
 
+ 
 
+  
+  
+  const disableButton = ()=>{
+      const button = document.getElementById("register");
+      button.innerText= "Registering...";
+      button.disabled = true;
+      
+  }
 
+  const enableButton = ()=>{
+      const button = document.getElementById("register");
+      button.innerText= "Register";;
+      button.disabled = false;
+  }
 
-    var messageRef =  firebase.database().ref('messages');
-
-    const disableButton = ()=>{
-        const button = document.getElementById("register");
-        button.innerText= "Registering...";
-        button.disabled = true;
-        
-    }
-
-    const enableButton = ()=>{
-        const button = document.getElementById("register");
-        button.innerText= "Register";;
-        button.disabled = false;
-    }
-
-   function validateConfirmPassword(){
+  function validateConfirmPassword(){
     var confirm_pass = document.getElementById("confirm_pass").value;
     var pass = document.getElementById("PASS").value;
 
@@ -28,33 +27,61 @@
         document.getElementById("errCPass").innerHTML = "Both Password Doesn't Match";
         return false;
     }
-    }
+  }
 
 function data(){
         
-        //Disabling Button and show spinner
-        event.preventDefault();
+    //Disabling Button and show spinner
+    event.preventDefault();
 
 
-        if(validateConfirmPassword()==false){ enableButton(); return;} 
-        document.getElementById("errCPass").innerHTML = "";
+    if(validateConfirmPassword()==false){ enableButton(); return;} 
+    document.getElementById("errCPass").innerHTML = "";
 
 
 
 
-  var name = document.getElementById("F_NAME").value;
-  var lastname = document.getElementById("L_NAME").value;
-  var email = document.getElementById("EMAIL").value;
-  var pass = document.getElementById("PASS").value;
-  var dob = document.getElementById("DOB").value;
-  var phone = document.getElementById("MOBILE").value;
-  var genders = document.getElementsByName("GENDER");
-  var selectedGender;
+    var fname = document.getElementById("F_NAME").value;
+    var lastname = document.getElementById("L_NAME").value;
+    var email = document.getElementById("EMAIL").value;
+    var pass = document.getElementById("PASS").value;
+    var dob = document.getElementById("DOB").value;
+    var phone = document.getElementById("MOBILE").value;
+    var genders = document.getElementsByName("GENDER");
+    var selectedGender;
 
-  for(var i = 0; i < genders.length; i++) {
-   if(genders[i].checked)
-   selectedGender = genders[i].value;
+    var data = {
+      name : fname+' '+lastname,
+      email ,
+      password : pass,
+      mobile : phone,
+      address : 'Jalandhar'
     }
+
+    
+
+    axios.post('http://localhost:3000/p/register', data)
+    .then(response => {
+      //  save token to local storage
+      alert('Patient Registered Successfully');
+      localStorage.setItem('token',response.data.token);
+      console.log('token saved in localstorage');
+    })
+    .catch(error =>{
+      console.log("some error occured");
+      console.log(error);
+    })
+
+
+
+}
+
+  // for(var i = 0; i < genders.length; i++) {
+  //  if(genders[i].checked)
+  //  selectedGender = genders[i].value;
+  //   }
+
+
 
   /*var myHeaders = new Headers();
   myHeaders.append("F_NAME", name);
@@ -65,7 +92,7 @@ function data(){
   myHeaders.append("MOBILE", phone);
   myHeaders.append("GENDER", selectedGender);
   myHeaders.append("Content-Type", "image/png");*/
-  var file = document.getElementById("file").files[0];
+  //var file = document.getElementById("file").files[0];
   
   /*var requestOptions = {
     method: 'POST',
@@ -100,40 +127,40 @@ function data(){
                           
                           enableButton();
           });*/
-saveMessage(name,lastname,email,pass,dob,phone,genders,files);
-}
+// saveMessage(name,lastname,email,pass,dob,phone,genders,files);
+// }
 
 
-let today = new Date(),
-day = today.getDate(),
-month = today.getMonth()+1, //January is 0
-year = today.getFullYear();
-if(day<10){
-   day='0'+day
-} 
-if(month<10){
-month='0'+month
-}
-today = year+'-'+month+'-'+day;
-console.log(today)
+// let today = new Date(),
+// day = today.getDate(),
+// month = today.getMonth()+1, //January is 0
+// year = today.getFullYear();
+// if(day<10){
+//    day='0'+day
+// } 
+// if(month<10){
+// month='0'+month
+// }
+// today = year+'-'+month+'-'+day;
+// console.log(today)
 
-document.getElementById("DOB").setAttribute("max", today);
+// document.getElementById("DOB").setAttribute("max", today);
 
 //save message to firebase
 
-function saveMessage(name,lastname,email,pass,dob,phone,genders,files){
-  var newMessageRef = messageRef.push();
-  newMessageRef.set({
-    name:name,
-    lastname:lastname,
-    email:email,
-    pass:pass,
-    dob:dob,
-    phone:phone,
-    genders:genders,
-    files:files
-  });
-}
+// function saveMessage(name,lastname,email,pass,dob,phone,genders,files){
+//   var newMessageRef = messageRef.push();
+//   newMessageRef.set({
+//     name:name,
+//     lastname:lastname,
+//     email:email,
+//     pass:pass,
+//     dob:dob,
+//     phone:phone,
+//     genders:genders,
+//     files:files
+//   });
+// }
 
 
 
