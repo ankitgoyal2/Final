@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../css/forAll.css">
 
 
-        <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+        <!-- <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js"></script>
@@ -32,13 +32,13 @@
           firebase.initializeApp(firebaseConfig);
           firebase.analytics();
 
-        </script>
+        </script> -->
 
        
         <title>Login Form</title>
 
     </head>
-   
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
  <script>
       const disableButton = ()=>{
             const button = document.getElementById("login");
@@ -111,22 +111,45 @@
 
       console.log("success");
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Signed in
-        var user = userCredential.user;
-        alert("login successfully");
-        console.log("email loggedin successfully");
+    // firebase.auth().signInWithEmailAndPassword(email, password)
+    //   .then((userCredential) => {
+    //     // Signed in
+    //     var user = userCredential.user;
+    //     alert("login successfully");
+    //     console.log("email loggedin successfully");
+    //     window.location = "doctor_dash.html";
+    //     // ...
+    //   })
+    //   .catch((error) => {
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
+    //     alert("Please check your username and password");
+    //     console.log(errorMessage);
+    //     enableButton();
+    //   });
+      
+      data = {
+      email,
+      password
+    }
+
+    axios.post("http://localhost:3000/d/login", data)
+      .then(Response => {
+        //save token to localStorage
+        console.log('Login successful');
+        localStorage.setItem('token', Response.data.token);
+        console.log(localStorage.getItem('token'));
         window.location = "doctor_dash.html";
-        // ...
       })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+      .catch(error => {
+        console.log("some error occured");
+        console.log(error);
         alert("Please check your username and password");
-        console.log(errorMessage);
         enableButton();
-      });
+      })
+
+
+
   }
 
     </script>
