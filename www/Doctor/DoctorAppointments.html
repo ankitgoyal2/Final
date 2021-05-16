@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/forAll.css">
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            padding-top:50px;
+            background-color: #fff;
+
+          
+        }
+     
+        
+        .card{
+            margin-top:20px;
+            margin-bottom:20px;
+            background:#F2F3F7;
+        }
+
+     
+
+        .section-title {
+    margin-bottom: 50px;
+    color: #3d8f8c;
+    margin: 0 0 15px;
+    position: relative;
+    text-align: center;
+    font-weight:500;
+  }
+
+.section-title:before, .section-title:after{
+    content: "";
+  height: 2px;
+  width: 30%;
+  background: #d4d4d4;
+  
+  top: 50%;
+  z-index: 2;
+}
+
+.section-title:before{
+    left:0;
+}
+.section-title:after{
+    right:0;
+}
+
+
+
+    </style>
+    <title>My Appontments</title>
+</head>
+<body>
+    <div class="container">
+         <div class="section-title"><h1 >My Appointments</h1></div> 
+        <div id="ap_list" class="row"> </div>
+   </div>
+    <script>
+
+    
+      var no_a=true;
+      const url = 'https://connectingit.in/ords/shoppergoldeneye/core/getappoinment/gaurav8315@gmail.com'
+      fetch(url)
+      .then(res=> res.json() )
+      .then(({items})=> {
+        
+        if(items.length>0) no_a=false;
+          console.log(items)
+        items.map(patient=>{
+        
+            document.getElementById("ap_list").innerHTML +=  
+              `<div class="col-sm-6 col-md-4">
+                <div class="card" >
+                    <div class="card-body">
+                      <h4 class="card-title text-center"><strong>${patient.name}</strong></h4>
+                      <div class="container">
+                        <dl class="row">
+                        <dt class="col-7">Date:</dt>
+                        <dd class="col-5"> ${patient.appointment_date}</dd>
+                        </dl>
+                        <dl class="row">
+                        <dt class="col-7">Timings:</dt>
+                        <dd class="col-5"> ${patient.appoinment_timeing}</dd>
+                        </dl>
+                        <dl class="row">
+                        <dt class="col-7">Contact:</dt>
+                        <dd class="col-5"> ${patient.phone}</dd>
+                        </dl>
+                        <dl class="row">
+                        <dt class="col-7">Symptoms:</dt>
+                        <dd class="col-5"> ${patient.symptons}</dd>
+                        </dl>
+
+                        <div class="row">
+                        <a href="doctor_tabs.html?patient_id=${patient.patient_id}&name=${patient.name}&appointment_date=${patient.appointment_date}&shift=${patient.shift}&consultation_type=${patient.consultation_type}&phone=${patient.phone}&allergy=${patient.allergy}&symptons=${patient.symptons}&other_details=${patient.other_details}&appoinment_timeing=${patient.appoinment_timeing}&email=${patient.email}&h_history=${patient.h_history}&medi_certificate=${patient.medi_certificate}" class="btn btn-main col-12">Start Consultation</a>
+                        <div>
+                      
+                      </div>
+
+                     
+
+                    </div>
+                   
+                  </div>
+            </div>`; 
+        })
+        console.log(no_a)
+        if(no_a===true){
+            var no_appointments = document.createElement('h4');
+         no_appointments.innerText='No Appointment';
+         var col = document.createElement('div');
+         col.classList.add('col-12');
+          var element = document.createElement('div');
+          element.classList.add('text-center');
+          element.append(no_appointments);
+          col.append(element);
+          document.getElementById('ap_list').append(col);
+        }
+      })
+      .catch(err=>alert(err.message))
+
+        
+ 
+
+    </script>
+
+</body>
+</html>
