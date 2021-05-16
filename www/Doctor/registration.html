@@ -95,6 +95,11 @@
                         <input type="text" id="city" name="CITY" placeholder="City name" class="form-control" required minlength="3">
                 </div>
 
+                <div class="form-group">
+                    <label for="State">State Name</label>
+                        <input type="text" id="state" name="STATE" placeholder="State name" class="form-control" required minlength="3">
+                </div>
+
                 <div class="form-group ">
                     <label for="lat"> Location</label>
                 
@@ -163,9 +168,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="file">Degree/Diploma/Certificate name</label><br>
-                    <input type="text" id="CertiName" name="CertiName" placeholder="Certificate name" class="form-control" required>
-                    <br>
+                    <label for="file">Higest Qualification/Degree/Diploma/Certificate name</label><br>
+                    <select id="highestQuali" name="highestQuali" class="form-control">
+                        <option value="MedicalSchool">Medical School</option>
+                        <option value="BechelrOfMedicine">Bechelor of Medicine,Bachelor of Surgery</option>
+                        <option value="BachelorOfMedicalScience">Bachelor Of Medical Science</option>
+                        <option value="MasterOfSurgery">Master Of Surgery</option>
+                        <option value="MasterOfMedicine">Master of Medicine</option>
+                        <option value="DoctorOfMedicine">Doctor of Medicine</option>
+                        <option value="DoctorOfOsteopathicMedicine">Doctor Of Osteopathic Medicine</option>
+                        <option value="MDPhD">MD-PhD</option>                   
+                    </select>
                     <input type="file" id="file" name="file" accept="image/*" class="form--control-file"  required>
                 </div>
              
