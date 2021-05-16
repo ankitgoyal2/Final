@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/forAll.css">
+    <style>
+     
+        img{
+            width: 150px!important;
+	    height: 150px!important;
+        margin-top:10px;
+
+        }
+        body{
+            margin:0;
+            padding:0;
+        }
+        dt{
+            font-size: medium;
+        }
+        
+        dd{
+            font-size: medium;
+        }
+
+  .btn{
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 140px;
+    outline: none !important;
+    text-transform: uppercase;
+    width: calc(100% - 40px);
+    display: block;
+    margin: auto;
+    margin-top:10px;
+  }
+
+  h2{
+      margin-top:20px;
+  }
+
+       
+
+
+    </style>
+    <title>Appointment</title>
+</head>
+<body>
+      <div class="container">
+          <div class="text-center">
+            <h2>Doctor Profile</h2>
+
+          </div>
+ <div class="row">
+            <div class="col-xs-12 col-md-6 offset-md-3">
+
+                <div class="card">
+                    <div class="row justify-content-center">
+                       
+                            <img id="photo" src="../img\doctor.jfif" class="rounded-circle card-img-top"/>
+                     
+                    </div>
+                   
+                    <!-- <h5 class="card-header">
+                        Patient Info</h5> -->
+                
+                    <div class="card-body">
+                    <dl class="row">
+                    <dt class="col-5">Name:</dt>
+                    <dd class="col-7" id="name">No Data</dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-5">Contact No.:</dt>
+                        <dd class="col-7" id="phone">No Data</dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-5">Email:</dt>
+                        <dd class="col-7" id="email">No Data</dd>
+                    </dl>
+                 
+                    <dl class="row">
+                        <dt class="col-5">Specialist:</dt>
+                        <dd class="col-7" id="special"> No Data</dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-5">Highest Qualification:</dt>
+                        <dd class="col-7" id="highest_qualification"> No Data</dd>
+                    </dl>
+                  
+                                    
+                    </div>
+                    
+                    <button onclick="logout()" class="btn-main btn" style="margin-bottom: 10px;">Logout</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+      </div>
+       
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script>
+        // const url = `https://connectingit.in/ords/shoppergoldeneye/core/drprofile_get/${window.localStorage.getItem('email')}`
+
+        // fetch(url)
+        // .then(res=>res.json())
+        // .then(({items})=>{
+
+        // document.getElementById("name").innerText = items[0].doctor_name;
+        // document.getElementById("phone").innerText =  items[0].contact;
+        // document.getElementById("email").innerText =  items[0].email;
+
+        // document.getElementById("special").innerText =  items[0].speciality;
+        // document.getElementById("experience").innerText =  items[0].experience;
+
+
+        // })
+
+        // .catch(err=>alert(err.message))
+
+        // //document.getElementById("photo").src=`https://connectingit.in/ords/shoppergoldeneye/core/patientpicture/${urlParams.get('email')}`
+        // document.getElementById("photo").src=`https://connectingit.in/ords/shoppergoldeneye/core/getprofileimage/${window.localStorage.getItem('email')}`
+
+        // var photo = document.getElementById('photo');
+        // var baseStr64 = localStorage.getItem('profile_pic');
+        // photo.setAttribute('src', "data:image/jpg;base64," + baseStr64);
+
+        var data = JSON.parse(localStorage.getItem('data'));
+
+        console.log('daata is '+ data);
+        document.getElementById("name").innerText = data.name;
+        document.getElementById("phone").innerText =  data.mobile;
+        document.getElementById("email").innerText =  data.email;
+        document.getElementById("highest_qualification").innerText = data.highest_qualification;
+        document.getElementById("special").innerText = data.speciality;
+        
+
+        function logout()
+        {
+            var token = localStorage.getItem('toekn');
+
+            axios.put("http://localhost:3000/d/logout",{},{
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+            })
+            .then(response=>{
+                console.log(response.msg);
+                window.location = 'login.html';
+            })
+            .catch(error=>{
+                console.log('error occured '+ error);
+            })
+
+        }
+
+
+
+
+  </script>
+</body>
+</html>
