@@ -10,24 +10,21 @@
             margin:0;
             padding:0;
             padding-top:50px;
-	        background-color: #fff;
+            background-color: #fff;
+
+          
         }
-        img{
-            width: 150px!important;
-	    height: 150px!important;
-        margin-top:10px;
-        }
+     
         
         .card{
-          margin-top:20px;
+            margin-top:20px;
             margin-bottom:20px;
             background:#F2F3F7;
         }
 
-
      
 
-    .section-title {
+        .section-title {
     margin-bottom: 50px;
     color: #3d8f8c;
     margin: 0 0 15px;
@@ -53,14 +50,6 @@
     right:0;
 }
 
-h4{
-  color: #ccc;
-}
-
-
-     
-
-       
 
 
     </style>
@@ -68,32 +57,27 @@ h4{
 </head>
 <body>
     <div class="container">
-        <div class="section-title"> <h1 >My Appointments</h1></div>
-        <div id="ap_list" class="row">
-     </div>
+         <div class="section-title"><h1 >My Appointments</h1></div> 
+        <div id="ap_list" class="row"> </div>
    </div>
     <script>
 
-   
-    var storage = window.localStorage;
-    var email = storage.getItem('email');
-   
- 
-    var no_a = true;
-
-      const url = `https://connectingit.in/ords/shoppergoldeneye/core/patentside_appoinment/${window.localStorage.getItem('email')}`
-      
+    
+      var no_a=true;
+      const url = 'https://connectingit.in/ords/shoppergoldeneye/core/getappoinment/gaurav8315@gmail.com'
       fetch(url)
       .then(res=> res.json() )
       .then(({items})=> {
-        if(items.length>0) no_a=false; 
+        
+        if(items.length>0) no_a=false;
           console.log(items)
         items.map(patient=>{
-            console.log(patient)
-              document.getElementById("ap_list").innerHTML +=  
+        
+            document.getElementById("ap_list").innerHTML +=  
               `<div class="col-sm-6 col-md-4">
                 <div class="card" >
                     <div class="card-body">
+                      <h4 class="card-title text-center"><strong>${patient.name}</strong></h4>
                       <div class="container">
                         <dl class="row">
                         <dt class="col-7">Date:</dt>
@@ -104,22 +88,30 @@ h4{
                         <dd class="col-5"> ${patient.appoinment_timeing}</dd>
                         </dl>
                         <dl class="row">
+                        <dt class="col-7">Contact:</dt>
+                        <dd class="col-5"> ${patient.phone}</dd>
+                        </dl>
+                        <dl class="row">
                         <dt class="col-7">Symptoms:</dt>
                         <dd class="col-5"> ${patient.symptons}</dd>
                         </dl>
-                        </div>
-                        <div class="text-center">
-                        <a href="patient_tabs.html?patient_id=${patient.patient_id}&name=${patient.name}&appointment_date=${patient.appointment_date}&shift=${patient.shift}&consultation_type=${patient.consultation_type}&phone=${patient.phone}&allergy=${patient.allergy}&symptons=${patient.symptons}&other_details=${patient.other_details}&appoinment_timeing=${patient.appoinment_timeing}&email=${patient.email}&h_history=${patient.h_history}&medi_certificate=${patient.medi_certificate}&doctor_id=${patient.dr_id}" class="btn btn-primary">More Details</a>
-                        </div>
+
+                        <div class="row">
+                        <a href="doctor_tabs.html?patient_id=${patient.patient_id}&name=${patient.name}&appointment_date=${patient.appointment_date}&shift=${patient.shift}&consultation_type=${patient.consultation_type}&phone=${patient.phone}&allergy=${patient.allergy}&symptons=${patient.symptons}&other_details=${patient.other_details}&appoinment_timeing=${patient.appoinment_timeing}&email=${patient.email}&h_history=${patient.h_history}&medi_certificate=${patient.medi_certificate}" class="btn btn-main col-12">Start Consultation</a>
+                        <div>
+                      
                       </div>
+
+                     
+
+                    </div>
+                   
                   </div>
             </div>`; 
-            
-           
         })
         console.log(no_a)
         if(no_a===true){
-          var no_appointments = document.createElement('h4');
+            var no_appointments = document.createElement('h4');
          no_appointments.innerText='No Appointment';
          var col = document.createElement('div');
          col.classList.add('col-12');
@@ -129,7 +121,6 @@ h4{
           col.append(element);
           document.getElementById('ap_list').append(col);
         }
-
       })
       .catch(err=>alert(err.message))
 
