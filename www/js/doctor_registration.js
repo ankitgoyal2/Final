@@ -39,6 +39,13 @@ function data(){
     var registrationNumber = document.getElementById("registrationNumber").value;
     var doctorType = document.getElementById("doctorType").value;
     var city = document.getElementById("city").value;
+    var state = document.getElementById("state").value;
+    var highest_qualification = document.getElementById("highestQuali").value;
+    var lat = document.getElementById("latitude").innerText;
+    var long = document.getElementById("longitude").innerText;
+
+
+
 
     //  var profile_pic = document.getElementById("profile_pic").files[0];
     //  if(profile_pic!=null)
@@ -80,13 +87,17 @@ function data(){
       email ,
       password : pass,
       mobile : phone,
-      address : city,
-      highest_qualification : 'pg',
+      address : {
+        location : {lat , long },
+        city,
+        state,
+      },
+      highest_qualification,
       speciality : doctorType,
     }
 
     localStorage.setItem('data',JSON.stringify(data));
-    console.log();
+  
 
     axios.post('http://localhost:3000/d/register', data)
     .then(response => {
