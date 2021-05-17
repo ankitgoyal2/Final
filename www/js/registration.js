@@ -40,8 +40,16 @@ function data(){
     var lastname = document.getElementById("L_NAME").value;
     var email = document.getElementById("EMAIL").value;
     var pass = document.getElementById("PASS").value;
-    // var dob = document.getElementById("DOB").value;
+    var dob = document.getElementById("DOB").value;
     var phone = document.getElementById("MOBILE").value;
+    var city = document.getElementById("CITY").value;
+    var state = document.getElementById("STATE").value;
+    var lat = document.getElementById("LATITUDE").innerText;
+    var long = document.getElementById("LONGITUDE").innerText;
+
+
+    
+
     // var genders = document.getElementsByName("GENDER");
     // var selectedGender;
 
@@ -50,10 +58,14 @@ function data(){
       email ,
       password : pass,
       mobile : phone,
-      address : 'Jalandhar'
+      address : {
+        location : {lat , long },
+        city,
+        state,
+      },
     }
 
-    
+    localStorage.setItem('data',JSON.stringify(data));
 
     axios.post('http://localhost:3000/p/register', data)
     .then(response => {

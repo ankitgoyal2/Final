@@ -38,6 +38,7 @@ function data(){
     var dob = document.getElementById("DOB").value;
     var registrationNumber = document.getElementById("registrationNumber").value;
     var doctorType = document.getElementById("doctorType").value;
+    var phone = document.getElementById("MOBILE").value;
     var city = document.getElementById("city").value;
     var state = document.getElementById("state").value;
     var highest_qualification = document.getElementById("highestQuali").value;
@@ -78,7 +79,7 @@ function data(){
 
 
 
-    var phone = document.getElementById("MOBILE").value;
+   
     // var genders = document.getElementsByName("GENDER");
     // var selectedGender;
 
