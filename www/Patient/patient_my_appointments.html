@@ -87,56 +87,69 @@
         authorization: `Bearer ${token}`,
       }
     })
-      .then(( items ) => {
-        //if (items.length > 0) no_a = false;
-        console.log(items)})
-      //   items.map(patient => {
-      //     console.log(patient)
-      //     document.getElementById("ap_list").innerHTML +=
-      //       `<div class="col-sm-6 col-md-4">
-      //           <div class="card" >
-      //               <div class="card-body">
-      //                 <div class="container">
-      //                   <dl class="row">
-      //                   <dt class="col-7">Date:</dt>
-      //                   <dd class="col-5"> ${patient.appointment_date}</dd>
-      //                   </dl>
-      //                   <dl class="row">
-      //                   <dt class="col-7">Timings:</dt>
-      //                   <dd class="col-5"> ${patient.appoinment_timeing}</dd>
-      //                   </dl>
-      //                   <dl class="row">
-      //                   <dt class="col-7">Symptoms:</dt>
-      //                   <dd class="col-5"> ${patient.symptons}</dd>
-      //                   </dl>
-      //                   </div>
-      //                   <div class="text-center">
-                        
-      //                   </div>
-      //                 </div>
-      //             </div>
-      //       </div>`;
+    .then(( response ) => {
+      items = response.data._doc.appointments;
+      if (items.length > 0) no_a = false;
+      console.log(items)
+      var count=0;
+      items.map(appointment => {
+        console.log(appointment)
+        count= count+1;
+        document.getElementById("ap_list").innerHTML +=
+          `<div class="col-sm-6 col-md-6">
+              <div class="card" >
+                  <div class="card-body">
+                    <h4 class="card-title text-center"><strong>Appointment ${count}</strong></h4>
+                    <div class="container">
+                      <dl class="row">
+                      <dt class="col-7">Symptoms:</dt>
+                      <dd class="col-5"> ${appointment.symptoms}</dd>
+                      </dl>
+                      <dl class="row">
+                      <dt class="col-7">Medical History:</dt>
+                      <dd class="col-5"> ${appointment.history}</dd>
+                      </dl>
+                      <dl class="row">
+                      <dt class="col-7">Allergy:</dt>
+                      <dd class="col-5"> ${appointment.allergy}</dd>
+                      </dl>
+                      <dl class="row">
+                      <dt class="col-7">Doctor's Name:</dt>
+                      <dd class="col-5"> ${appointment.doctor.name}</dd>
+                      </dl>
+                      <dl class="row">
+                      <dt class="col-7">Date:</dt>
+                      <dd class="col-5"> ${appointment.date}</dd>
+                      </dl>
+                      <dl class="row">
+                      <dt class="col-7">Timings:</dt>
+                      <dd class="col-5"> ${appointment.timeSlot}</dd>
+                      </dl>
+                    </div>
+                      <div class="text-center">
+                      
+                      </div>
+                    </div>
+                </div>
+          </div>`;
 
 
-      //   })
-      //   console.log(no_a)
-      //   if (no_a === true) {
-      //     var no_appointments = document.createElement('h4');
-      //     no_appointments.innerText = 'No Appointment';
-      //     var col = document.createElement('div');
-      //     col.classList.add('col-12');
-      //     var element = document.createElement('div');
-      //     element.classList.add('text-center');
-      //     element.append(no_appointments);
-      //     col.append(element);
-      //     document.getElementById('ap_list').append(col);
-      //   }
+      })
+      console.log(no_a)
+      if (no_a === true) {
+        var no_appointments = document.createElement('h4');
+        no_appointments.innerText = 'No Appointment';
+        var col = document.createElement('div');
+        col.classList.add('col-12');
+        var element = document.createElement('div');
+        element.classList.add('text-center');
+        element.append(no_appointments);
+        col.append(element);
+        document.getElementById('ap_list').append(col);
+      }
 
-      // })
-      .catch(err => alert(err.message))
-
-
-
+    })
+    .catch(err => alert(err.message))
 
   </script>
 
