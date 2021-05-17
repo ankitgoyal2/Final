@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/forAll.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            padding-top: 50px;
+            background-color: #fff;
+        }
+
+        img {
+            width: 150px !important;
+            height: 150px !important;
+            margin-top: 10px;
+        }
+
+        .card {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background: #F2F3F7;
+        }
+
+
+
+
+        .section-title {
+            margin-bottom: 50px;
+            color: #3d8f8c;
+            margin: 0 0 15px;
+            position: relative;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .section-title:before,
+        .section-title:after {
+            content: "";
+            height: 2px;
+            width: 30%;
+            background: #d4d4d4;
+
+            top: 50%;
+            z-index: 2;
+        }
+
+        .section-title:before {
+            left: 0;
+        }
+
+        .section-title:after {
+            right: 0;
+        }
+
+        h4 {
+            color: #ccc;
+        }
+    </style>
+    <title>Consultation History</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="section-title">
+            <h1>Consultation History</h1>
+        </div>
+        <div id="ap_list" class="row">
+        </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+
+
+        var token = localStorage.getItem('token');
+
+        console.log('token is ' + token);
+        var no_a = true;
+
+        axios.get("http://localhost:3000/p/appointments", {
+            headers: {
+                authorization: `Bearer ${token}`,
+            }
+        })
+            .then((response) => {
+                items = response.data._doc.appointments;
+                if (items.length > 0) no_a = false;
+                console.log(items)
+                var count = 0;
+                items.map(appointment => {
+                    console.log(appointment)
+                    count = count + 1;
+                    document.getElementById("ap_list").innerHTML +=
+                        `<div class="col-sm-6 col-md-6">
+              <div class="card" >
+                  <div class="card-body">
+                    <h4 class="card-title text-center"><strong>Appointment ${count}</strong></h4>
+                    <div class="container">
+                      <dl class="row">
+                      <dt class="col-7">Symptoms:</dt>
+                      <dd class="col-5"> ${appointment.symptoms}</dd>
+                      </dl>
+                      <dl class="row">
+                      <dt class="col-7">Medical History:</dt>
+                      <dd class="col-5"> ${appointment.history}</dd>
+                      </dl>
+                      <dl class="row">
+                      <dt class="col-7">Allergy:</dt>
+                      <dd class="col-5"> ${appointment.allergy}</dd>
+                      </dl>
+                      <dl class="row">
+                      <dt class="col-7">Doctor's Name:</dt>
+                      <dd class="col-5"> ${appointment.doctor.name}</dd>
+                      </dl>
+                      <dl class="row">
+                      <dt class="col-7">Date:</dt>
+                      <dd class="col-5"> ${appointment.date}</dd>
+                      </dl>
+                      <dl class="row">
+                      <dt class="col-7">Timings:</dt>
+                      <dd class="col-5"> ${appointment.timeSlot}</dd>
+                      </dl>
+                    </div>
+                      <div class="text-center">
+                      
+                      </div>
+                    </div>
+                </div>
+          </div>`;
+
+
+                })
+                console.log(no_a)
+                if (no_a === true) {
+                    var no_appointments = document.createElement('h4');
+                    no_appointments.innerText = 'No Appointment';
+                    var col = document.createElement('div');
+                    col.classList.add('col-12');
+                    var element = document.createElement('div');
+                    element.classList.add('text-center');
+                    element.append(no_appointments);
+                    col.append(element);
+                    document.getElementById('ap_list').append(col);
+                }
+
+            })
+            .catch(err => alert(err.message))
+
+    </script>
+
+</body>
+
+</html>
