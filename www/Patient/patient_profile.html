@@ -1,96 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/forAll.css">
     <style>
-     
-        img{
-            width: 150px!important;
-	    height: 150px!important;
-        margin-top:10px;
+        img {
+            width: 150px !important;
+            height: 150px !important;
+            margin-top: 10px;
 
         }
-        body{
-            margin:0;
-            padding:0;
+
+        body {
+            margin: 0;
+            padding: 0;
         }
-        dt{
-            font-size: medium;
-        }
-        
-        dd{
+
+        dt {
             font-size: medium;
         }
 
-  .btn{
-    font-size: 16px;
-    font-weight: bold;
-    min-width: 140px;
-    outline: none !important;
-    text-transform: uppercase;
-    width: calc(100% - 40px);
-    display: block;
-    margin: auto;
-    margin-top:10px;
-  }
+        dd {
+            font-size: medium;
+        }
 
-  h2{
-      margin-top:20px;
-  }
+        .btn {
+            font-size: 16px;
+            font-weight: bold;
+            min-width: 140px;
+            outline: none !important;
+            text-transform: uppercase;
+            width: calc(100% - 40px);
+            display: block;
+            margin: auto;
+            margin-top: 10px;
+        }
 
-       
-
-
+        h2 {
+            margin-top: 20px;
+        }
     </style>
-    <title>Doctor Profile</title>
+    <title>Patient Profile</title>
 </head>
-<body>
-      <div class="container">
-          <div class="text-center">
-            <h2>Doctor Profile</h2>
 
-          </div>
- <div class="row">
+<body>
+    <div class="container">
+        <div class="text-center">
+            <h2>Patient Profile</h2>
+
+        </div>
+        <div class="row">
             <div class="col-xs-12 col-md-6 offset-md-3">
 
                 <div class="card">
                     <div class="row justify-content-center">
-                       
-                            <img id="photo" src="../img\user_pic.png" class="rounded-circle card-img-top"/>
-                     
+
+                        <img id="photo" src="../img\user_pic.png" class="rounded-circle card-img-top" />
+
                     </div>
-                   
-                   
-                
+
+                    <!-- <h5 class="card-header">
+                        Patient Info</h5> -->
+
                     <div class="card-body">
-                    <dl class="row">
-                    <dt class="col-5">Name:</dt>
-                    <dd class="col-7" id="name">No Data</dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-5">Contact No.:</dt>
-                        <dd class="col-7" id="phone">No Data</dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-5">Email:</dt>
-                        <dd class="col-7" id="email">No Data</dd>
-                    </dl>
-                 
-                    <dl class="row">
-                        <dt class="col-5">Specialist:</dt>
-                        <dd class="col-7" id="special"> No Data</dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-5">Highest Qualification:</dt>
-                        <dd class="col-7" id="highest_qualification"> No Data</dd>
-                    </dl>
-                  
-                                    
+                        <dl class="row">
+                            <dt class="col-5">Name:</dt>
+                            <dd class="col-7" id="name">No Data</dd>
+                        </dl>
+                        <dl class="row">
+                            <dt class="col-5">Contact No.:</dt>
+                            <dd class="col-7" id="phone">No Data</dd>
+                        </dl>
+                        <dl class="row">
+                            <dt class="col-5">Email:</dt>
+                            <dd class="col-7" id="email">No Data</dd>
+                        </dl>
+
+                        <!-- <dl class="row">
+                            <dt class="col-5">City:</dt>
+                            <dd class="col-7" id="city"> No Data</dd>
+                        </dl>
+                        <dl class="row">
+                            <dt class="col-5">State:</dt>
+                            <dd class="col-7" id="state"> No Data</dd>
+                        </dl> -->
+
+
                     </div>
-                    
+
                     <button onclick="logout()" class="btn-main btn" style="margin-bottom: 10px;">Logout</button>
 
                 </div>
@@ -98,11 +98,11 @@
             </div>
         </div>
     </div>
-      </div>
-       
+    </div>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-  <script>
+    <script>
         // const url = `https://connectingit.in/ords/shoppergoldeneye/core/drprofile_get/${window.localStorage.getItem('email')}`
 
         // fetch(url)
@@ -130,49 +130,47 @@
 
         
         
-        
-        
-        function getProfileData() {
+
+        function getProfileData(){
             var token = localStorage.getItem('token');
 
-            axios.get("http://localhost:3000/d/profile", {
+            axios.get("http://localhost:3000/p/profile", {
                 headers: {
                     authorization: `Bearer ${token}`,
                 }
             })
-            .then((response) => {
+            .then((response) =>{
                 console.log(response);
                 document.getElementById("name").innerText = response.data.name;
                 document.getElementById("phone").innerText = response.data.mobile;
                 document.getElementById("email").innerText = response.data.email;
-                document.getElementById("highest_qualification").innerText = response.data.highest_qualification;
-                document.getElementById("special").innerText = response.data.speciality;
-                // console.log("data fixed successfully");
+                // document.getElementById("city").innerText = response.data.address.city;
+                // document.getElementById("state").innerText = response.data.address.state;
+                //console.log("data fixed successfully");
             })
-            .catch((error) => {
-                console.log('error is ' + error);
+            .catch((error)=>{
+                console.log('error is '+ error);
             })
         }
 
         getProfileData();
 
-        function logout()
-        {
+        function logout() {
             var token = localStorage.getItem('token');
 
-            axios.put("http://localhost:3000/d/logout",{},{
+            axios.put("http://localhost:3000/p/logout", {}, {
                 headers: {
                     authorization: `Bearer ${token}`,
                 },
             })
-            .then(response=>{
+            .then(response => {
                 console.log(response);
-                localStorage.setItem('token',null);
+                localStorage.setItem('token', null);
                 console.log('logout successful');
-                window.location = 'login.html';
+                window.location = 'login2.html';
             })
-            .catch(error=>{
-                console.log('error occured '+ error);
+            .catch(error => {
+                console.log('error occured ' + error);
             })
 
         }
@@ -180,6 +178,7 @@
 
 
 
-  </script>
+    </script>
 </body>
+
 </html>
