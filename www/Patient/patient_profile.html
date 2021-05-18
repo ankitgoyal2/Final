@@ -79,14 +79,14 @@
                             <dd class="col-7" id="email">No Data</dd>
                         </dl>
 
-                        <!-- <dl class="row">
+                        <dl class="row">
                             <dt class="col-5">City:</dt>
                             <dd class="col-7" id="city"> No Data</dd>
                         </dl>
                         <dl class="row">
                             <dt class="col-5">State:</dt>
                             <dd class="col-7" id="state"> No Data</dd>
-                        </dl> -->
+                        </dl>
 
 
                     </div>
@@ -144,8 +144,8 @@
                 document.getElementById("name").innerText = response.data.name;
                 document.getElementById("phone").innerText = response.data.mobile;
                 document.getElementById("email").innerText = response.data.email;
-                // document.getElementById("city").innerText = response.data.address.city;
-                // document.getElementById("state").innerText = response.data.address.state;
+                document.getElementById("city").innerText = response.data.address.city;
+                document.getElementById("state").innerText = response.data.address.state;
                 //console.log("data fixed successfully");
             })
             .catch((error)=>{

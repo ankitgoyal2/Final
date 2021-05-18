@@ -19,7 +19,7 @@ axios.get('http://localhost:3000/d/get-doctor?speciality=' + speciality)
     const docName = document.createElement('h5');
     docName.innerText = name;
     const buttonLink = document.createElement('a');
-    buttonLink.href = 'appointment_fix.html?doctor_id=' + _id;
+    buttonLink.href = 'patient_doctor_profile.html?doctor_id=' + _id;
     const buttonClick = document.createElement('button')
     buttonClick.classList.add('btn','btn-sm','btn-primary')
     buttonClick.innerText = 'Book Appointment'

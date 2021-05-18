@@ -5,79 +5,75 @@ $(".hamburger").click(function(){
 });
 
 
+        axios.get( 'http://localhost:3000/p/profile',{
+          headers: {
+            authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }).then(function (response) {
+          // handle success
+          const {name,email,mobile} = response.data;
+
+          document.getElementById('fullName').value = name;
+          document.getElementById('email').value = email;
+          document.getElementById('phoneNumber').value = mobile;
+
+          console.log(response);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
 
 
-  axios.get( 'http://localhost:3000/p/profile',{
-    headers: {
-      authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
-  }).then(function (response) {
-    // handle success
-    const {name,email,mobile} = response.data;
-
-    document.getElementById('fullName').value = name;
-    document.getElementById('email').value = email;
-    document.getElementById('phoneNumber').value = mobile;
-
-    console.log(response);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-
-const disableButton = ()=>{
+        const disableButton = ()=>{
             const button = document.getElementById("bookApp");
             button.innerText= "Booking Appointment...";
             button.disabled = true;
             
         }
 
-const enableButton = ()=>{
+        const enableButton = ()=>{
             const button = document.getElementById("bookApp");
             button.innerText= "Book Appointment";
             button.disabled = false;
         }
 
         document.getElementById("appointment_form").addEventListener("submit", function(event){
-          event.preventDefault()
-          var app_date = document.getElementById("appDate").value;
-var shift_time = document.getElementById("appTime").value;
-// shift_time=shift_time.options[shift_time.selectedIndex].parentNode.label;
+            event.preventDefault()
+            var app_date = document.getElementById("appDate").value;
+            var shift_time = document.getElementById("appTime").value;
+            // shift_time=shift_time.options[shift_time.selectedIndex].parentNode.label;
 
-var date = document.getElementById("appDate").value;
-
-
-
-
-var symptoms = document.getElementById("symptons").value;
-var allergy = document.getElementById("allergies").value;
-//var otr_comp = document.getElementById("otherComplaint").value;
-var history = document.getElementById("healthHistory").value;
-//var file = document.getElementById("filea").files[0];
+            var date = document.getElementById("appDate").value;
 
 
 
 
-var data ={timeSlot:shift_time,date,amount:2000,symptoms,allergy,history}
+            var symptoms = document.getElementById("symptons").value;
+            var allergy = document.getElementById("allergies").value;
+            //var otr_comp = document.getElementById("otherComplaint").value;
+            var history = document.getElementById("healthHistory").value;
+            //var file = document.getElementById("filea").files[0];
 
-const urlParams = new URLSearchParams(window.location.search);
-const doctor_id = urlParams.get('doctor_id');
-axios.post( 'http://localhost:3000/p/appointments/book/'+doctor_id,data,{
-    headers: {
-      authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
-  }).then(function (response) {
-    // handle success
 
-    console.log(response);
-  })
+
+
+            var data ={timeSlot:shift_time,date,amount:2000,symptoms,allergy,history}
+
+            
+            const doctor_id = localStorage.getItem('doctor_id');
+            axios.post( 'http://localhost:3000/p/appointments/book/'+doctor_id,data,{
+                headers: {
+                  authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+              }).then(function (response) {
+                // handle success
+
+                console.log(response);
+              })
         });
         
-        function appoinment(){
-
-
-}
+        function appoinment(){}
 
 //DAte VAlidation to prevent choosing date oldder than todya
     let today = new Date(),
