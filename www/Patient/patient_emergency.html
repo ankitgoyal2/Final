@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title> Emergency</title>
+
+    <link rel="stylesheet" href="../css/register.css">
+    <!-- <script src="../js/register.js"></script> -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="../https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="../css/forAll.css">
+    <style>
+        input[type=radio] {
+            margin-right: 10px;
+            margin-top: 10px;
+            transform: scale(1.3);
+        }
+
+        .container {
+            max-width: 100% !important;
+        }
+
+
+        #register {
+            margin-top: 30px;
+        }
+
+        form {
+            padding-top: 0px !important;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="signup-form col-12">
+                <form onsubmit="data();">
+                    <h2>Current Location</h2>
+
+                    <div class="form-group ">
+                        <label for="lat"> Location</label>
+
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label> Latitude</label>
+                                <!-- <p class="form-control">Latitude <p id="latitude"></p></p> -->
+                                <p id="LATITUDE" class="form-control"></p>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label> Longitude</label>
+                                <p id="LONGITUDE" class="form-control"></p>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <p>Distance</p>
+                        <select id="distance" name="distance" class="form-control">
+                            <option value="5">
+                                <=5 KM</option>
+                            <option value="10">
+                                <=10 KM</option>
+
+                            <option value="15">
+                                <=15 KM</option>
+
+                            <option value="20">
+                                <=20 KM</option>
+                            
+                            <option value="1500">
+                                >=20 KM</option>
+
+                        </select>
+                    </div>
+                    
+
+                    <button id="currentLocation"  class="btn btn-lg btn-main btn-block" type="submit">
+                        Find Nearby Doctors
+                    </button>
+                    <hr>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+
+    <script>
+        var x = document.getElementById("LATITUDE");
+        var y = document.getElementById("LONGITUDE");
+
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                // x.innerHTML = "Geolocation is not supported by this browser.";
+                // y.innerHTML = "Geolocation is not supported by this browser.";
+
+            }
+        }
+
+        function showPosition(position) {
+            x.innerText = position.coords.latitude;
+            y.innerText = position.coords.longitude;
+
+            // x.innerHTML = "Latitude: " + position.coords.latitude +
+            //     "<br>Longitude: " + position.coords.longitude;
+        }
+
+        getLocation();
+    </script>
+    <script>
+        function data() {
+
+            event.preventDefault();
+            var lat = document.getElementById("LATITUDE").innerText;
+            var long = document.getElementById("LONGITUDE").innerText;
+            var distance = document.getElementById("distance").value;
+
+            localStorage.setItem('lat',lat);
+            localStorage.setItem('long', long);
+            localStorage.setItem('distance', distance);
+
+            window.location = 'patient_emergency_select_doctor.html';
+        }
+    </script>
+    
+</body>
+
+</html>
