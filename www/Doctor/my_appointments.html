@@ -119,14 +119,14 @@
                         <a href="#" class="btn btn-main col-12">Prescribe Patient</a>
                         <div>
 
-                        <div class="row">
-                        <button onclick="markCompleted('${appointment._id}')"  class="btn btn-main col-12">Mark Completed</button>
-                        <div>
+                        
               
                       </div>
                     </div>
-                   
-                  </div>
+                    <div class="row" style="margin-top:10px;">
+                          <button onclick="markCompleted('${appointment._id}')"  class="btn btn-main col-12">Mark Completed</button>
+                          <div>
+                    </div>
             </div>`;
         })
         console.log(no_a)
@@ -146,7 +146,7 @@
 
       function markCompleted(_id){
         console.log(_id);
-        axios.put("http://localhost:3000/d/appointments/complete/"+_id, {
+        axios.put("http://localhost:3000/d/appointments/complete/"+_id,{}, {
           headers: {
             authorization: `Bearer ${token}`,
           }
