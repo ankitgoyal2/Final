@@ -7,7 +7,7 @@
 
     data = { lat, long, distance};
 
-    axios.get("http://localhost:3000/p/nearby-doctors",data,{
+    axios.post("http://localhost:3000/p/nearby-doctors",data,{
         headers: {
             authorization: `Bearer ${token}`,
         }
@@ -18,39 +18,38 @@
         const data = response.data.doctors;
         for(let i=0;i<data.length;i++)
         {
-        const { name, speciality, highest_qualification, _id} = data[i];
-        const outerDiv = document.createElement('div');
-        outerDiv.classList.add('col-6');
-        const innerDiv = document.createElement('div');
-        innerDiv.classList.add('text-center');
-        const docImage = document.createElement('img')
-        docImage.classList.add('rounded-circle');
-        docImage.src = '../img\\doctor.jfif';
-        const docName = document.createElement('h5');
-        docName.innerText = name;
-        const buttonLink = document.createElement('a');
-        buttonLink.href = 'patient_doctor_profile.html?doctor_id=' + _id;
-        const buttonClick = document.createElement('button')
-        buttonClick.classList.add('btn','btn-sm','btn-primary')
-        buttonClick.innerText = 'Book Appointment'
+            const { name, speciality, highest_qualification, _id} = data[i];
+            const outerDiv = document.createElement('div');
+            outerDiv.classList.add('col-6');
+            const innerDiv = document.createElement('div');
+            innerDiv.classList.add('text-center');
+            const docImage = document.createElement('img')
+            docImage.classList.add('rounded-circle');
+            docImage.src = '../img\\doctor.jfif';
+            const docName = document.createElement('h5');
+            docName.innerText = name;
+            const buttonLink = document.createElement('a');
+            buttonLink.href = 'patient_emergency_doctor_profile.html?doctor_id=' + _id;
+            const buttonClick = document.createElement('button')
+            buttonClick.classList.add('btn','btn-sm','btn-primary')
+            buttonClick.innerText = 'Book Appointment'
 
 
-        buttonLink.appendChild( buttonClick );
+            buttonLink.appendChild( buttonClick );
 
-        innerDiv.appendChild( docImage );
-        innerDiv.appendChild( docName );
-        innerDiv.appendChild( buttonLink );
+            innerDiv.appendChild( docImage );
+            innerDiv.appendChild( docName );
+            innerDiv.appendChild( buttonLink );
 
-        outerDiv.appendChild(innerDiv);
+            outerDiv.appendChild(innerDiv);
 
-        const doctorList = document.getElementById('doctor_list');
+            const doctorList = document.getElementById('doctor_list');
 
-        doctorList.appendChild(outerDiv);
+            doctorList.appendChild(outerDiv);
         }
         
 
 
-        console.log(response);
     })
     .catch(function (error) {
         // handle error
