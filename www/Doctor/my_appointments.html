@@ -68,8 +68,7 @@
 
   <script>
 
-
-    var token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
 
       console.log('token is ' + token);
       var no_a = true;
@@ -117,13 +116,14 @@
                         </dl>
 
                         <div class="row">
-                        <a href="#" class="btn btn-main col-12">Start Consultation</a>
+                        <a href="#" class="btn btn-main col-12">Prescribe Patient</a>
                         <div>
-                      
+
+                        <div class="row">
+                        <button onclick="markCompleted('${appointment._id}')"  class="btn btn-main col-12">Mark Completed</button>
+                        <div>
+              
                       </div>
-
-                     
-
                     </div>
                    
                   </div>
@@ -144,7 +144,23 @@
       })
       .catch(err => alert(err.message))
 
-
+      function markCompleted(_id){
+        console.log(_id);
+        axios.put("http://localhost:3000/d/appointments/complete/"+_id, {
+          headers: {
+            authorization: `Bearer ${token}`,
+          }
+        })
+        .then(res =>{
+            alert(res.data.message);
+            location.reload();
+        })
+        .catch(err =>{
+          console.log(err);
+        })
+        
+        
+      }
 
 
   </script>
