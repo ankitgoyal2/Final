@@ -1,12 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emergency Appointment Fix</title>
+
+    <title> Emergency Appointment Fix</title>
+
+    <link rel="stylesheet" href="../css/register.css">
+    <!-- <script src="../js/register.js"></script> -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="../https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="../css/forAll.css">
+    <style>
+        input[type=radio] {
+            margin-right: 10px;
+            margin-top: 10px;
+            transform: scale(1.3);
+        }
+
+        .container {
+            max-width: 100% !important;
+        }
+
+
+        #register {
+            margin-top: 30px;
+        }
+
+        form {
+            padding-top: 0px !important;
+        }
+    </style>
+
 </head>
+
 <body>
-    <h4>Emergency Appointment Fix</h4>
+    <div class="container">
+        <div class="row">
+            <div class="signup-form col-6">
+                <form onsubmit="data();">
+                    <h2>Fix Appointment</h2>
+
+                    <div class="form-group" style="margin-top: 40px;">
+                        <!-- <label for="Desc"> Description</label> -->
+
+                        <!-- <div class="row"> -->
+                           
+                                <!-- <label> Description</label> -->
+                                <!-- <p class="form-control">Latitude <p id="latitude"></p></p> -->
+                                <!-- <p id="LATITUDE" class="form-control"></p> -->
+                        <input type="text" id="symptoms" name="symptoms" placeholder="Description" class="form-control" autofocus required>
+
+                            
+
+
+                        <!-- </div> -->
+                    </div>
+
+                    
+
+
+                    <button id="fix_appointment" class="btn btn-lg btn-main btn-block" type="submit">
+                        Fix Appointment
+                    </button>
+                    <hr>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+
+        function getDate(){
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            today = yyyy + '/' + mm + '/' + dd;
+            return today;
+        }
+
+        function data() {
+
+            event.preventDefault();
+            var symptoms = document.getElementById("symptoms").value;
+
+            var data = {
+                symptoms,
+                amount: 0,
+                allergy:"Emergency",
+                history:"Emergency",
+                timeSlot:"Emergency", 
+                date: getDate(),
+            }
+
+            console.log(data);
+
+            const doctor_id = localStorage.getItem('doctor_id');
+            axios.post('http://localhost:3000/p/appointments/book/' + doctor_id, data, {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            }).then(function (response) {
+
+                console.log(response);
+                window.alert("Emergency Appointment Fixed");
+                window.location = 'patient_my_appointments.html';
+            })
+            .catch(err=>{
+                console.log(err);
+            })
+            
+
+            
+        }
+    </script>
+
 </body>
+
 </html>
