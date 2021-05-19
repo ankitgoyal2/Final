@@ -13,7 +13,7 @@ function getDoctorProfile(){
         document.getElementById("name").innerText = response.data.name;
         document.getElementById("phone").innerText = response.data.mobile;
         document.getElementById("email").innerText = response.data.email;
-        document.getElementById("experience").innerText = response.data.experience;
+        document.getElementById("work_experience").innerText = response.data.work_experience+' years';
         document.getElementById("highest_qualification").innerText = response.data.highest_qualification;
         document.getElementById("special").innerText = response.data.speciality;
         document.getElementById("photo").src='../img/doctor.jfif';

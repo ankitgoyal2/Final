@@ -38,6 +38,7 @@ function data(){
     var dob = document.getElementById("DOB").value;
     var registrationNumber = document.getElementById("registrationNumber").value;
     var doctorType = document.getElementById("doctorType").value;
+    var work_experience = document.getElementById("Y_O_E").value;
     var phone = document.getElementById("MOBILE").value;
     var city = document.getElementById("city").value;
     var state = document.getElementById("state").value;
@@ -94,6 +95,7 @@ function data(){
         state,
       },
       highest_qualification,
+      work_experience,
       speciality : doctorType,
     }
 
