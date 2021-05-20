@@ -44,6 +44,95 @@
                     
 
                     <div class="form-group">
+                        <!-- <label for="map">Search your location</label> -->
+                        <!-- <input type="text" id="map" name="map" placeholder="example: Delhi" class="form-control"> -->
+                        
+                        <div class="form-group">
+                            
+                            <select class="form-control" id="map" required>
+                                <option id="res1"></option>
+                                <option id="res2"></option>
+                                <option id="3">modify</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    
+                    <button id="find" onclick="getmap()" class="btn btn-lg btn-main btn-block">
+                        Find Location
+                    </button>
+
+                    <div class="form-group">
+                        <p id="res1"></p>
+                        <p id="res2"></p>
+                        
+
+
+
+                    </div>
+                    <p style="font-size:x-large; padding-left: 47%;">or</p>
+                    <!-- <div class="form-group ">
+                        <label for="lat" style="font-size: larger;"> Use current Location</label>
+                    
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label> Latitude</label>
+                                <!-- <p class="form-control">Latitude <p id="latitude"></p></p> -->
+                        <!--      <p id="LATITUDE" class="form-control"></p>
+                            </div>
+                    
+                            <div class="form-group col-sm-6">
+                                <label> Longitude</label>
+                                <p id="LONGITUDE" class="form-control"></p>
+                    
+                            </div>
+                    
+                        </div>
+                    </div> -->
+
+                    <button onclick="getLocation();" class="btn btn-lg btn-main btn-block">
+                        Use current Location
+                    </button>
+
+                    <!-- <div class="form-group">
+                        <p>Distance</p>
+                        <select id="distance" name="distance" class="form-control">
+                            <option value="5">
+                                <=5 KM</option>
+                            <option value="10">
+                                <=10 KM</option>
+
+                            <option value="15">
+                                <=15 KM</option>
+
+                            <option value="20">
+                                <=20 KM</option>
+                            
+                            <option value="1500">
+                                >=20 KM</option>
+
+                        </select>
+                    </div> 
+                    
+
+                    <button id="currentLocation"  class="btn btn-lg btn-main btn-block" type="submit">
+                        Find Nearby Doctors
+                    </button>
+                    <hr> -->
+
+
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="signup-form col-7">
+                <form onsubmit="data();">
+                    <h2>Distance</h2>
+
+                    
+
+                    <!-- <div class="form-group">
                         <label for="map">Search your location</label>
                         <input type="text" id="map" name="map" placeholder="example: Delhi" class="form-control">
                     </div>
@@ -78,14 +167,14 @@
                             </div>
                     
                         </div>
-                    </div> -->
+                    </div> 
 
                     <button onclick="getLocation();" class="btn btn-lg btn-main btn-block">
                         Use current Location
-                    </button>
+                    </button> -->
 
                     <div class="form-group">
-                        <p>Distance</p>
+                        <!-- <p>Distance</p> -->
                         <select id="distance" name="distance" class="form-control">
                             <option value="5">
                                 <=5 KM</option>
