@@ -38,23 +38,23 @@
     <div class="container">
         <div class="row">
             <div class="signup-form col-7">
-                <form onsubmit="data();">
+                <form>
                     <h2>Select Location</h2>
 
                     
 
                     <div class="form-group">
                         <!-- <label for="map">Search your location</label> -->
-                        <!-- <input type="text" id="map" name="map" placeholder="example: Delhi" class="form-control"> -->
+                        <input type="text" id="map" name="map" placeholder="Enter City Name" class="form-control" autofocus>
                         
-                        <div class="form-group">
+                        <!-- <div class="form-group" id="resultDiv"> -->
                             
-                            <select class="form-control" id="map" required>
-                                <option id="res1"></option>
-                                <option id="res2"></option>
-                                <option id="3">modify</option>
+                            <select class="form-control" id="result">
+                                <option>Select correct Result</option>
+                                <!-- <option id="res2"></option>
+                                <option id="res3"></option> -->
                             </select>
-                        </div>
+                        <!-- </div> -->
                         
                     </div>
                     
@@ -62,14 +62,9 @@
                         Find Location
                     </button>
 
-                    <div class="form-group">
-                        <p id="res1"></p>
-                        <p id="res2"></p>
-                        
+                    
 
-
-
-                    </div>
+                    
                     <p style="font-size:x-large; padding-left: 47%;">or</p>
                     <!-- <div class="form-group ">
                         <label for="lat" style="font-size: larger;"> Use current Location</label>
@@ -91,36 +86,10 @@
                     </div> -->
 
                     <button onclick="getLocation();" class="btn btn-lg btn-main btn-block">
-                        Use current Location
+                        Use Current Location
                     </button>
 
-                    <!-- <div class="form-group">
-                        <p>Distance</p>
-                        <select id="distance" name="distance" class="form-control">
-                            <option value="5">
-                                <=5 KM</option>
-                            <option value="10">
-                                <=10 KM</option>
-
-                            <option value="15">
-                                <=15 KM</option>
-
-                            <option value="20">
-                                <=20 KM</option>
-                            
-                            <option value="1500">
-                                >=20 KM</option>
-
-                        </select>
-                    </div> 
                     
-
-                    <button id="currentLocation"  class="btn btn-lg btn-main btn-block" type="submit">
-                        Find Nearby Doctors
-                    </button>
-                    <hr> -->
-
-
                 </form>
             </div>
         </div>
@@ -130,48 +99,6 @@
                 <form onsubmit="data();">
                     <h2>Distance</h2>
 
-                    
-
-                    <!-- <div class="form-group">
-                        <label for="map">Search your location</label>
-                        <input type="text" id="map" name="map" placeholder="example: Delhi" class="form-control">
-                    </div>
-                    
-                    <button id="find" onclick="getmap()" class="btn btn-lg btn-main btn-block">
-                        Find Location
-                    </button>
-
-                    <div class="form-group">
-                        <p id="res1"></p>
-                        <p id="res2"></p>
-                        
-
-
-
-                    </div>
-                    <p style="font-size:x-large;">or</p>
-                    <!-- <div class="form-group ">
-                        <label for="lat" style="font-size: larger;"> Use current Location</label>
-                    
-                        <div class="row">
-                            <div class="form-group col-sm-6">
-                                <label> Latitude</label>
-                                <!-- <p class="form-control">Latitude <p id="latitude"></p></p> -->
-                        <!--      <p id="LATITUDE" class="form-control"></p>
-                            </div>
-                    
-                            <div class="form-group col-sm-6">
-                                <label> Longitude</label>
-                                <p id="LONGITUDE" class="form-control"></p>
-                    
-                            </div>
-                    
-                        </div>
-                    </div> 
-
-                    <button onclick="getLocation();" class="btn btn-lg btn-main btn-block">
-                        Use current Location
-                    </button> -->
 
                     <div class="form-group">
                         <!-- <p>Distance</p> -->
@@ -242,6 +169,36 @@
 
         
 
+        function getmap() {
+                event.preventDefault();
+                
+                choice = 2;
+                var address = document.getElementById('map').value;
+
+                axios.get("http://nominatim.openstreetmap.org/search?q=" + address + "&format=json")
+                    .then(res => {
+                        console.log(res.data);
+                        var length = res.data.length;
+
+                        document.getElementById('result').innerHTML='';
+                        if (length == 0) {
+                            // document.getElementById('res1').innerText = "No Result Found";
+                            choice = -1;
+                            document.getElementById('result').innerHTML+= '<option>No Record Found</option>';
+                        }
+                        else {
+                            for(var i=0;i<length;i++)
+                            {
+                                document.getElementById('result').innerHTML += `<option id='${i}' value='${res.data[i].lat+' '+res.data[i].lon}' >${res.data[i].display_name} </option>`;
+                            }
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        window.alert('some error occured');
+                    })
+            }
+
         
         function data() {
 
@@ -250,9 +207,16 @@
             if(choice==-1){
                 window.alert('select an option first');
             }else{
+
+                if(choice==2){
+                    var v = document.getElementById('result').value.split(" ");
+                    lat = v[0];
+                    long = v[1];
+                }
                 // var lat = document.getElementById("LATITUDE").innerText;
                 // var long = document.getElementById("LONGITUDE").innerText;
                 var distance = document.getElementById("distance").value;
+
                 console.log(lat);
                 console.log(long);
 
@@ -264,34 +228,7 @@
             } 
         }
 
-        function getmap(){
-            event.preventDefault();
-            choice = 2;
-            var address = document.getElementById('map').value;
-            
-            axios.get("http://nominatim.openstreetmap.org/search?q="+address+"&format=json")
-            .then(res=>{
-                console.log(res.data);
-                var length = res.data.length;
-
-                if(length==0){
-                    document.getElementById('res1').innerText = "No Result Found";
-                }
-                else{
-                    if(length>=2){
-                        document.getElementById('res1').innerText = res.data[0].display_name;
-                        document.getElementById('res2').innerText = res.data[1].display_name;
-                    }
-                    else{
-                        document.getElementById('res1').innerText = res.data[0].display_name;
-                    } 
-                }
-            })
-            .catch(err=>{
-                console.log(err);
-                window.alert('some error occured');
-            })
-        }
+        
 
     </script>
     
