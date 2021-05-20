@@ -5,7 +5,7 @@ $(".hamburger").click(function(){
 });
 
 
-        axios.get( 'http://localhost:3000/p/profile',{
+        axios.get( 'http://aqueous-spire-38105.herokuapp.com/p/profile',{
           headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -62,7 +62,7 @@ $(".hamburger").click(function(){
 
             
             const doctor_id = localStorage.getItem('doctor_id');
-            axios.post( 'http://localhost:3000/p/appointments/book/'+doctor_id,data,{
+            axios.post( 'http://aqueous-spire-38105.herokuapp.com/p/appointments/book/'+doctor_id,data,{
                 headers: {
                   authorization: `Bearer ${localStorage.getItem('token')}`,
                 },

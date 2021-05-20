@@ -67,7 +67,7 @@ function data(){
 
     localStorage.setItem('data',JSON.stringify(data));
 
-    axios.post('http://localhost:3000/p/register', data)
+    axios.post('http://aqueous-spire-38105.herokuapp.com/p/register', data)
     .then(response => {
       
       alert('Patient Registered Successfully');

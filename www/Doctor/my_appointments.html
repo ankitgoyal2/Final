@@ -74,7 +74,7 @@
       console.log('token is ' + token);
       var no_a = true;
 
-      axios.get("http://localhost:3000/d/appointments/active", {
+      axios.get("http://aqueous-spire-38105.herokuapp.com/d/appointments/active", {
         headers: {
           authorization: `Bearer ${token}`,
         }
@@ -147,7 +147,7 @@
 
       function markCompleted(_id){
         console.log(_id);
-        axios.put("http://localhost:3000/d/appointments/complete/"+_id,{}, {
+        axios.put("http://aqueous-spire-38105.herokuapp.com/d/appointments/complete/"+_id,{}, {
           headers: {
             authorization: `Bearer ${token}`,
           }

@@ -7,7 +7,7 @@
 
     data = { lat, long, distance};
 
-    axios.post("http://localhost:3000/p/nearby-doctors",data,{
+    axios.post("http://aqueous-spire-38105.herokuapp.com/p/nearby-doctors",data,{
         headers: {
             authorization: `Bearer ${token}`,
         }

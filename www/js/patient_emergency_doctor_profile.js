@@ -7,7 +7,7 @@ function getDoctorProfile(){
     const doctor_id = urlParams.get('doctor_id');
     localStorage.setItem('doctor_id',doctor_id);
 
-    axios.get("http://localhost:3000/d/profile/"+doctor_id)
+    axios.get("http://aqueous-spire-38105.herokuapp.com/d/profile/"+doctor_id)
     .then((response) => {
         console.log(response);
         document.getElementById("name").innerText = response.data.name;

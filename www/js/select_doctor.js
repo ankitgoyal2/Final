@@ -2,7 +2,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const speciality = urlParams.get('speciality');
 
 
-axios.get('http://localhost:3000/d/get-doctor?speciality=' + speciality)
+axios.get('http://aqueous-spire-38105.herokuapp.com/d/get-doctor?speciality=' + speciality)
   .then(function (response) {
     // handle success
     const data = response.data.list;

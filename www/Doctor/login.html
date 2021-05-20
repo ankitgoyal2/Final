@@ -133,8 +133,9 @@
       email,
       password
     }
+  
 
-    axios.post("http://localhost:3000/d/login", data)
+    axios.post("http://aqueous-spire-38105.herokuapp.com/d/login", data)
       .then(Response => {
         //save token to localStorage
         console.log('Login successful');

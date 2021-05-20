@@ -142,7 +142,7 @@
         function getProfileData() {
             var token = localStorage.getItem('token');
 
-            axios.get("http://localhost:3000/d/profile", {
+            axios.get("http://aqueous-spire-38105.herokuapp.com/d/profile", {
                 headers: {
                     authorization: `Bearer ${token}`,
                 }
@@ -169,7 +169,7 @@
         {
             var token = localStorage.getItem('token');
 
-            axios.put("http://localhost:3000/d/logout",{},{
+            axios.put("http://aqueous-spire-38105.herokuapp.com/d/logout",{},{
                 headers: {
                     authorization: `Bearer ${token}`,
                 },
