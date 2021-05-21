@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/forAll.css">
+    <link rel="stylesheet" href="../css/dropdowncheckbox.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         .signup-form h2:before,
@@ -108,6 +109,25 @@
                 <!-- Symptoms -->
                 <div class="form-group">
                     <label for="symptons">Symptoms:</label>
+                    <div id="symptoms" class="dropdown-check-list form-control" tabindex="100">
+                        <span class="anchor">Select Symptoms</span>
+                        <ul class="items">
+                          <li><input type="checkbox" />None </li>
+                          <li><input type="checkbox" />Earache</li>
+                          <li><input type="checkbox" />Cold </li>
+                          <li><input type="checkbox" />Cough </li>
+                          <li><input type="checkbox" />Diarrhea </li>
+                          <li><input type="checkbox" />Fever </li>
+                          <li><input type="checkbox" />Headache</li>
+                          <li><input type="checkbox" />Pain</li>
+                          <li><input type="checkbox" />Rash</li>
+                          <li><input type="checkbox" />Skin Infection</li>
+                          <li><input type="checkbox" />Sore Throat</li>
+                          <li><input type="checkbox" />Vomiting</li>
+                        </ul>
+                      </div>
+
+                    
                     <!-- <select class="form-control" id="symptons" required>
                         <option selected>None</option>
                         <option>Earache</option>
@@ -122,7 +142,7 @@
                         <option>Sore Throat</option>
                         <option>Vomiting</option>
                     </select> -->
-                    <br>
+                    <!-- <br>
                     <input type="checkbox" id="symptoms1" name="symptoms1" value="None" checked="checked">
                     <label for="symptoms1"> None</label><br>
                     <input type="checkbox" id="symptoms2" name="symptoms2" value="Earache">
@@ -146,7 +166,7 @@
                     <input type="checkbox" id="symptoms11" name="symptoms11" value="Sore Throat">
                     <label for="symptoms11"> Sore Throat</label><br>
                     <input type="checkbox" id="symptoms12" name="symptoms12" value="Vomiting">
-                    <label for="symptoms12"> Vomiting</label><br><br>
+                    <label for="symptoms12"> Vomiting</label><br><br> -->
                     
                 </div>
                 
@@ -155,6 +175,17 @@
                 <!--Allergies-->
                 <div class="form-group">
                     <label for="allergies">Select Allergies:</label>
+                    <div id="allergies" class="dropdown-check-list form-control" tabindex="100">
+                        <span class="anchor">Select Allergies</span>
+                        <ul class="items">
+                          <li><input type="checkbox" />No known Allergies</li>
+                          <li><input type="checkbox" />Penicillin</li>
+                          <li><input type="checkbox" />NSAIDs</li>
+                          <li><input type="checkbox" />Anticonvulsants</li>
+                          <li><input type="checkbox" />Sulfonamides</li>
+                          <li><input type="checkbox" />Others</li>
+                        </ul>
+                      </div>
                     <!-- <select class="form-control" id="allergies" required>
                         <option selected>No known Allergies</option>
                         <option>Penicillin</option>
@@ -164,7 +195,7 @@
                         <option>Others</option>
                     </select> -->
 
-                    <br>
+                    <!-- <br>
                     <input type="checkbox" id="allergies1" name="allergies1" value="None" checked="checked">
                     <label for="allergies1"> No known Allergies</label><br>
                     <input type="checkbox" id="allergies2" name="allergies2" value="Penicillin">
@@ -176,7 +207,7 @@
                     <input type="checkbox" id="allergies5" name="allergies5" value="Sulfonamides">
                     <label for="allergies5"> Sulfonamides</label><br>  
                     <input type="checkbox" id="allergies6" name="allergies6" value="Others">
-                    <label for="allergies6"> Others</label><br><br>                
+                    <label for="allergies6"> Others</label><br><br> -->               
                 </div>
 
 
@@ -187,6 +218,21 @@
                 <!--Health history-->
                 <div class="form-group">
                     <label for="healthHistory">Health History:</label>
+                    <div id="healthHistory" class="dropdown-check-list form-control" tabindex="100">
+                        <span class="anchor">Select Health History</span>
+                        <ul class="items">
+                          <li><input type="checkbox" />None </li>
+                          <li><input type="checkbox" />Diabetes</li>
+                          <li><input type="checkbox" />Heart Diseases</li>
+                          <li><input type="checkbox" />Hypertension</li>
+                          <li><input type="checkbox" />Hyperlipidemia</li>
+                          <li><input type="checkbox" />Osteoarthritis</li>
+                          <li><input type="checkbox" />ASthma/COPD/Bronchitis</li>
+                          <li><input type="checkbox" />Cancer</li>
+                          <li><input type="checkbox" />Alcohol/Drug Overdose</li>
+                          <li><input type="checkbox" />Any HIV or STD/ Related Ailemnts</li>
+                        </ul>
+                      </div>
                     <!-- <select class="form-control" id="healthHistory" required>
                         <option>None</option>
                         <option>Diabetes</option>
@@ -200,7 +246,7 @@
                         <option>Any HIV or STD/ Related Ailemnts</option>
                     </select> -->
 
-                    <br>
+                    <!-- <br>
                     <input type="checkbox" id="healthHistory1" name="healthHistory1" value="None" checked="checked">
                     <label for="healthHistory1"> None</label><br>
                     <input type="checkbox" id="healthHistory2" name="healthHistory2" value="Diabetes">
@@ -221,6 +267,7 @@
                     <label for="healthHistory9"> Alcohol/Drug Overdose</label><br>
                     <input type="checkbox" id="healthHistory10" name="healthHistory10" value="AnyHIVOrSTD">
                     <label for="healthHistory10"> Any HIV or STD/ Related Ailemnts</label><br><br>
+                -->
                 </div>
 
                 <button type="submit" class="btn-main btn-lg btn btn-block" id="bookApp">
@@ -244,6 +291,33 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
     <script src="../js/appointment_fix.js"></script>
+
+    <script>
+        var checkList1 = document.getElementById('symptoms');
+        checkList1.getElementsByClassName('anchor')[0].onclick = function(evt) {
+        if (checkList1.classList.contains('visible'))
+            checkList1.classList.remove('visible');
+        else
+            checkList1.classList.add('visible');
+        }
+
+        var checkList2 = document.getElementById('allergies');
+        checkList2.getElementsByClassName('anchor')[0].onclick = function(evt) {
+        if (checkList2.classList.contains('visible'))
+            checkList2.classList.remove('visible');
+        else
+            checkList2.classList.add('visible');
+        }
+
+        var checkList3 = document.getElementById('healthHistory');
+        checkList3.getElementsByClassName('anchor')[0].onclick = function(evt) {
+        if (checkList3.classList.contains('visible'))
+            checkList3.classList.remove('visible');
+        else
+            checkList3.classList.add('visible');
+        }
+
+    </script>
 
 
 </body>
