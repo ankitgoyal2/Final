@@ -10,9 +10,9 @@
     </head>
     <body id="bdy-color">
         <div class="container">
-            <h5 class="section-title h1 mt-2 p-2" style="font-size:xx-large;">Dashboard</h5>
-            <h3 class="section-title">Welcome</h3>
-            <h3 class="section-title" id="name"></h3>
+            <h5 id="name" class="section-title h1 mt-2 p-2" style="font-size:xx-large;">Dashboard</h5>
+            <!-- <h3 class="section-title">Welcome</h3>
+            <h3 class="section-title" ></h3> -->
             <div class="row">
                 <!-- schedule -->
                 <div class="col-6">
@@ -131,7 +131,7 @@
                 })
                 .then((response) =>{
                     console.log(response);
-                    document.getElementById("name").innerText = response.data.name;
+                    document.getElementById("name").innerText = 'Welcome '+response.data.name;
                     //console.log("data fixed successfully");
                 })
                 .catch((error)=>{
