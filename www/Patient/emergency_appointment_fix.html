@@ -44,27 +44,30 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="signup-form col-6">
+            <div class="signup-form col-8">
                 <form onsubmit="data();">
                     <h2>Fix Appointment</h2>
 
                     <div class="form-group" style="margin-top: 40px;">
 
-                        <div class="container" style="margin-left:10%; margin-right: 10%;">
+                        <div class="container" style="margin-left: 30% ;">
                             <div class="row" >
-                                <div class="col">
+                                <div class="row">
                                     <a id="1" value="Accident" onclick="buttonClicked(id)" class="btn btn-primary btn-sm"  style="text-decoration: none; color:#fff;">Accident</a>
                                 </div>
-                                <div class="col">
-                                    <a id="2" value="Immediate first aid" onclick="buttonClicked(id)" class="btn btn-primary btn-sm"  style="text-decoration: none; color:#fff;">Immediate first aid</a>
+                                <div class="row">
+                                    <a id="2" value="Pregnancy" onclick="buttonClicked(id)" class="btn btn-primary btn-sm"
+                                        style="text-decoration: none; color:#fff;">Pregnancy</a>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col">
-                                    <a id="3" value="Pregnancy" onclick="buttonClicked(id)" class="btn btn-primary btn-sm"  style="text-decoration: none; color:#fff;">Pregnancy</a>
+                            <div class="row" >
+                                
+                                <div class="row">
+                                    <a id="3" value="Immediate first aid" onclick="buttonClicked(id)" class="btn btn-primary btn-sm"
+                                        style="text-decoration: none; color:#fff;">Immediate first aid</a>
                                 </div>
-                                <div class="col">
-                                    <a id="4" value="Unconscious" onclick="buttonClicked(id)" class="btn btn-primary btn-sm"  style="text-decoration: none; color:#fff;">Unconscious</a>
+                                <div class="row">
+                                    <a id="4" value="Unconscious" onclick="buttonClicked(id)" class="btn btn-primary btn-sm"  style="text-decoration: none; color:#fff;">Unconsciousness</a>
                                 </div>
             
                             </div>
@@ -78,21 +81,39 @@
                                 <!-- <p class="form-control">Latitude <p id="latitude"></p></p> -->
                                 <!-- <p id="LATITUDE" class="form-control"></p> -->
                         <!-- <input type="text" id="symptoms" name="symptoms" placeholder="Description" class="form-control" autofocus required> -->
-                        <textarea id="symptoms" name="symptoms" placeholder="Description(Optional)" class="form-control" rows="4"  style="border-radius: 5px;width: 100%; border-color: silver;"></textarea>
 
+                        <div class="container">
+                            <div class="row">
+                                <div class="col" style="margin-top: 3%;">
+                                    <input type="checkbox" id="toggleDesc" onclick="showDesc()" name="toggleDesc">
+                                    <label for="toggleDesc"> Have Another problem</label>
+                                </div>
+                                
+                                
+                        
+                            </div>
+                            <div class="row">
+
+                                <div class="col" >
+                                    <textarea id="symptoms" name="symptoms" placeholder="Description" class="form-control" rows="4"
+                                        style="border-radius: 5px; display:none; width: 100%; border-color: silver;"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
                             
+                                <div class="col">
+                                    <button id="fix_appointment" style="margin-top: 3%;" class="btn btn-lg btn-main btn-block" type="submit">
+                                        Fix Appointment
+                                    </button>
+                                </div>
+                            </div>
 
-
+                        
+                        </div>
+                        
                         <!-- </div> -->
                     </div>
-
-                    
-
-
-                    <button id="fix_appointment" class="btn btn-lg btn-main btn-block" type="submit">
-                        Fix Appointment
-                    </button>
-                    <hr>
 
 
                 </form>
@@ -106,7 +127,8 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-
+        var choice = -1;
+        var symptoms = '';
 
         function getDate(){
             var today = new Date();
@@ -117,49 +139,99 @@
             return today;
         }
 
+
         function data() {
 
             event.preventDefault();
-            var symptoms = document.getElementById("symptoms").value;
-
-            var data = {
-                symptoms,
-                amount: 0,
-                allergy:"Emergency",
-                history:"Emergency",
-                timeSlot:"Emergency", 
-                date: getDate(),
+            if(choice==2){
+                symptoms = document.getElementById("symptoms").value;
             }
 
-            console.log(data);
+            if(choice == -1||symptoms==''){
+                window.alert("Select one option");
+            }
+            else{
 
-            const doctor_id = localStorage.getItem('doctor_id');
-            axios.post('http://aqueous-spire-38105.herokuapp.com/p/appointments/book/' + doctor_id, data, {
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            }).then(function (response) {
+                console.log('symptoms is '+ symptoms);
 
-                console.log(response);
-                window.alert("Emergency Appointment Fixed");
-                window.location = 'patient_my_appointments.html';
-            })
-            .catch(err=>{
-                console.log(err);
-            })
-            
+                var data = {
+                    symptoms,
+                    amount: 0,
+                    allergy: "Emergency",
+                    history: "Emergency",
+                    timeSlot: "Emergency",
+                    date: getDate(),
+                }
 
-            
+                console.log(data);
+
+                const doctor_id = localStorage.getItem('doctor_id');
+                axios.post('http://aqueous-spire-38105.herokuapp.com/p/appointments/book/' + doctor_id, data, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                })
+                .then(function (response) {
+
+                    console.log(response);
+                    window.alert("Emergency Appointment Fixed");
+                    window.location = 'patient_my_appointments.html';
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+            }  
         }
 
         function buttonClicked(id){
 
-            document.getElementById("1").style.background="#2f6b69";
-            document.getElementById("2").style.background="#2f6b69";
-            document.getElementById("3").style.background="#2f6b69";
-            document.getElementById("4").style.background="#2f6b69";
+            var checkBox = document.getElementById("toggleDesc");
+            if(checkBox.checked==false){
+                document.getElementById("1").style.background = "#2f6b69";
+                document.getElementById("2").style.background = "#2f6b69";
+                document.getElementById("3").style.background = "#2f6b69";
+                document.getElementById("4").style.background = "#2f6b69";
+
+                document.getElementById(id).style.background = "#007bff";
+
+                choice = 1;
+                symptoms = document.getElementById(id).innerText;
+                console.log(symptoms);
+            }
+
             
-            document.getElementById(id).style.background="#007bff";
+        }
+
+        function disableAll(){
+            document.getElementById("1").style.background = "#2f6b69";
+            document.getElementById("2").style.background = "#2f6b69";
+            document.getElementById("3").style.background = "#2f6b69";
+            document.getElementById("4").style.background = "#2f6b69";
+        }
+
+        function enableAll(){
+            document.getElementById("1").style.background = "#007bff";
+            document.getElementById("2").style.background = "#007bff";
+            document.getElementById("3").style.background = "#007bff";
+            document.getElementById("4").style.background = "#007bff";
+        }
+
+        function showDesc() {             
+                
+                var checkBox = document.getElementById("toggleDesc");
+                var Description = document.getElementById("symptoms");
+
+                // If the checkbox is checked, display the Description
+                if (checkBox.checked == true) {
+                    disableAll();
+                    Description.style.display = "block";
+                    choice = 2;
+                    symptoms = '';
+                } else {
+                    enableAll();
+                    Description.style.display = "none";
+                    choice = -1;
+                }
         }
     </script>
 
