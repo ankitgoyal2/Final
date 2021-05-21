@@ -78,6 +78,7 @@
                         </optgroup>
 
                     </select>
+                    <span class="help-block flash" style="color:red">The time of the meeting can be +/-15 min. </span>
                 </div>
 
 
@@ -107,7 +108,7 @@
                 <!-- Symptoms -->
                 <div class="form-group">
                     <label for="symptons">Symptoms:</label>
-                    <select class="form-control" id="symptons" required>
+                    <!-- <select class="form-control" id="symptons" required>
                         <option selected>None</option>
                         <option>Earache</option>
                         <option>Cold</option>
@@ -120,20 +121,62 @@
                         <option>Skin Infection</option>
                         <option>Sore Throat</option>
                         <option>Vomiting</option>
-                    </select>
+                    </select> -->
+                    <br>
+                    <input type="checkbox" id="symptoms1" name="symptoms1" value="None" checked="checked">
+                    <label for="symptoms1"> None</label><br>
+                    <input type="checkbox" id="symptoms2" name="symptoms2" value="Earache">
+                    <label for="symptoms2"> Earache</label><br>
+                    <input type="checkbox" id="symptoms3" name="symptoms3" value="Cold">
+                    <label for="symptoms3"> Cold</label><br>
+                    <input type="checkbox" id="symptoms4" name="symptoms4" value="Cough">
+                    <label for="symptoms4"> Cough</label><br>
+                    <input type="checkbox" id="symptoms5" name="symptoms5" value="Diarrhea">
+                    <label for="symptoms5"> Diarrhea</label><br>
+                    <input type="checkbox" id="symptoms6" name="symptoms6" value="Fever">
+                    <label for="symptoms6"> Fever</label><br>
+                    <input type="checkbox" id="symptoms7" name="symptoms7" value="Headache">
+                    <label for="symptoms7"> Headache</label><br>
+                    <input type="checkbox" id="symptoms8" name="symptoms8" value="Pain">
+                    <label for="symptoms8"> Pain</label><br>
+                    <input type="checkbox" id="symptoms9" name="symptoms9" value="Rash">
+                    <label for="symptoms9"> Rash</label><br>
+                    <input type="checkbox" id="symptoms10" name="symptoms10" value="Skin Infection">
+                    <label for="symptoms10"> Skin Infection</label><br>
+                    <input type="checkbox" id="symptoms11" name="symptoms11" value="Sore Throat">
+                    <label for="symptoms11"> Sore Throat</label><br>
+                    <input type="checkbox" id="symptoms12" name="symptoms12" value="Vomiting">
+                    <label for="symptoms12"> Vomiting</label><br><br>
+                    
                 </div>
+                
+                
 
                 <!--Allergies-->
                 <div class="form-group">
                     <label for="allergies">Select Allergies:</label>
-                    <select class="form-control" id="allergies" required>
+                    <!-- <select class="form-control" id="allergies" required>
                         <option selected>No known Allergies</option>
                         <option>Penicillin</option>
                         <option>NSAIDs</option>
                         <option>Anticonvulsants</option>
                         <option>Sulfonamides</option>
                         <option>Others</option>
-                    </select>
+                    </select> -->
+
+                    <br>
+                    <input type="checkbox" id="allergies1" name="allergies1" value="None" checked="checked">
+                    <label for="allergies1"> No known Allergies</label><br>
+                    <input type="checkbox" id="allergies2" name="allergies2" value="Penicillin">
+                    <label for="allergies2"> Penicillin</label><br>
+                    <input type="checkbox" id="allergies3" name="allergies3" value="NSAIDs">
+                    <label for="allergies3"> NSAIDs</label><br>
+                    <input type="checkbox" id="allergies4" name="allergies4" value="Anticonvulsants">
+                    <label for="allergies4"> Anticonvulsants</label><br>  
+                    <input type="checkbox" id="allergies5" name="allergies5" value="Sulfonamides">
+                    <label for="allergies5"> Sulfonamides</label><br>  
+                    <input type="checkbox" id="allergies6" name="allergies6" value="Others">
+                    <label for="allergies6"> Others</label><br><br>                
                 </div>
 
 
@@ -144,7 +187,7 @@
                 <!--Health history-->
                 <div class="form-group">
                     <label for="healthHistory">Health History:</label>
-                    <select class="form-control" id="healthHistory" required>
+                    <!-- <select class="form-control" id="healthHistory" required>
                         <option>None</option>
                         <option>Diabetes</option>
                         <option>Heart Diseases</option>
@@ -155,7 +198,29 @@
                         <option>Cancer</option>
                         <option>Alcohol/Drug Overdose</option>
                         <option>Any HIV or STD/ Related Ailemnts</option>
-                    </select>
+                    </select> -->
+
+                    <br>
+                    <input type="checkbox" id="healthHistory1" name="healthHistory1" value="None" checked="checked">
+                    <label for="healthHistory1"> None</label><br>
+                    <input type="checkbox" id="healthHistory2" name="healthHistory2" value="Diabetes">
+                    <label for="healthHistory2"> Diabetes</label><br>
+                    <input type="checkbox" id="healthHistory3" name="healthHistory3" value="HeartDiseases">
+                    <label for="healthHistory3"> Heart Diseases</label><br>
+                    <input type="checkbox" id="healthHistory4" name="healthHistory4" value="Hypertension">
+                    <label for="healthHistory4"> Hypertension</label><br>  
+                    <input type="checkbox" id="healthHistory5" name="healthHistory5" value="Hyperlipidemia">
+                    <label for="healthHistory5"> Hyperlipidemia</label><br>  
+                    <input type="checkbox" id="healthHistory6" name="healthHistory6" value="Osteoarthritis">
+                    <label for="healthHistory6"> Osteoarthritis</label><br>
+                    <input type="checkbox" id="healthHistory7" name="healthHistory7" value="ASthma/COPD/Bronchitis">
+                    <label for="healthHistory7"> ASthma/COPD/Bronchitis</label><br>
+                    <input type="checkbox" id="healthHistory8" name="healthHistory8" value="Cancer">
+                    <label for="healthHistory8"> Cancer</label><br>
+                    <input type="checkbox" id="healthHistory9" name="healthHistory9" value="Alcohol/DrugOverdose">
+                    <label for="healthHistory9"> Alcohol/Drug Overdose</label><br>
+                    <input type="checkbox" id="healthHistory10" name="healthHistory10" value="AnyHIVOrSTD">
+                    <label for="healthHistory10"> Any HIV or STD/ Related Ailemnts</label><br><br>
                 </div>
 
                 <button type="submit" class="btn-main btn-lg btn btn-block" id="bookApp">
