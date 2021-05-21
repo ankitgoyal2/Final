@@ -49,10 +49,33 @@ $(".hamburger").click(function(){
 
 
 
-            var symptoms = document.getElementById("symptons").value;
-            var allergy = document.getElementById("allergies").value;
+            var records = document.getElementsByName("symptoms");
+            var symptoms='';
+            records.forEach((el)=>{
+              if(el.checked)
+                symptoms = symptoms + ' '+  el.value;  
+            });
+            symptoms=symptoms.trim();
+
+
+            records = document.getElementsByName("allergies");
+            var allergy='';
+            records.forEach((el)=>{
+              if(el.checked)
+                allergy = allergy +' '+ el.value;
+            });
+            allergy = allergy.trim();
+
+            records = document.getElementsByName("healthHistory");
+            var history='';
+            records.forEach((el)=>{
+              if(el.checked)
+                history = history +' '+ el.value;
+            });
+            history = history.trim();
+
+            
             //var otr_comp = document.getElementById("otherComplaint").value;
-            var history = document.getElementById("healthHistory").value;
             //var file = document.getElementById("filea").files[0];
 
 
@@ -60,6 +83,7 @@ $(".hamburger").click(function(){
 
             var data ={timeSlot:shift_time,date,amount:2000,symptoms,allergy,history}
 
+            console.log(data);
             
             const doctor_id = localStorage.getItem('doctor_id');
             axios.post( 'http://aqueous-spire-38105.herokuapp.com/p/appointments/book/'+doctor_id,data,{
@@ -68,7 +92,8 @@ $(".hamburger").click(function(){
                 },
               }).then(function (response) {
                 // handle success
-
+                window.alert('Appointment Booked Successfully');
+                window.location = '../Patient/patient_dash.html'
                 console.log(response);
               })
         });
