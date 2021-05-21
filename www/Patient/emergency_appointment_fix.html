@@ -22,7 +22,7 @@
 
         .container {
             max-width: 100% !important;
-            padding-top: 10%;
+            padding-top: 0%;
         }
 
 
@@ -32,6 +32,10 @@
 
         form {
             padding-top: 2% !important;
+        }
+
+        .row{
+        margin: 10px 0;
         }
     </style>
 
@@ -45,6 +49,27 @@
                     <h2>Fix Appointment</h2>
 
                     <div class="form-group" style="margin-top: 40px;">
+
+                        <div class="container" style="margin-left:10%; margin-right: 10%;">
+                            <div class="row" >
+                                <div class="col">
+                                    <a id="1" value="Accident" onclick="buttonClicked(id)" class="btn btn-primary btn-sm"  style="text-decoration: none; color:#fff;">Accident</a>
+                                </div>
+                                <div class="col">
+                                    <a id="2" value="Immediate first aid" onclick="buttonClicked(id)" class="btn btn-primary btn-sm"  style="text-decoration: none; color:#fff;">Immediate first aid</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <a id="3" value="Pregnancy" onclick="buttonClicked(id)" class="btn btn-primary btn-sm"  style="text-decoration: none; color:#fff;">Pregnancy</a>
+                                </div>
+                                <div class="col">
+                                    <a id="4" value="Unconscious" onclick="buttonClicked(id)" class="btn btn-primary btn-sm"  style="text-decoration: none; color:#fff;">Unconscious</a>
+                                </div>
+            
+                            </div>
+            
+                        </div>
                         <!-- <label for="Desc"> Description</label> -->
 
                         <!-- <div class="row"> -->
@@ -53,7 +78,7 @@
                                 <!-- <p class="form-control">Latitude <p id="latitude"></p></p> -->
                                 <!-- <p id="LATITUDE" class="form-control"></p> -->
                         <!-- <input type="text" id="symptoms" name="symptoms" placeholder="Description" class="form-control" autofocus required> -->
-                        <textarea id="symptoms" name="symptoms" placeholder="Description" class="form-control" rows="4"  style="border-radius: 5px;width: 100%; border-color: silver;" required></textarea>
+                        <textarea id="symptoms" name="symptoms" placeholder="Description(Optional)" class="form-control" rows="4"  style="border-radius: 5px;width: 100%; border-color: silver;"></textarea>
 
                             
 
@@ -125,6 +150,16 @@
             
 
             
+        }
+
+        function buttonClicked(id){
+
+            document.getElementById("1").style.background="#2f6b69";
+            document.getElementById("2").style.background="#2f6b69";
+            document.getElementById("3").style.background="#2f6b69";
+            document.getElementById("4").style.background="#2f6b69";
+            
+            document.getElementById(id).style.background="#007bff";
         }
     </script>
 
