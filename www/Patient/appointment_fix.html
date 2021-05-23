@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/forAll.css">
     <link rel="stylesheet" href="../css/dropdowncheckbox.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
         .signup-form h2:before,
         .signup-form h2:after {
@@ -43,7 +44,7 @@
 
     <div class="container">
         <div class="signup-form">
-            <form id="appointment_form" method="POST">
+            <form>  
                 <h2>Book Appointment</h2>
 
                 <!-- Date -->
@@ -270,8 +271,8 @@
                 -->
                 </div>
 
-                <button type="submit" class="btn-main btn-lg btn btn-block" id="bookApp">
-                    Book Appointment
+                <button class="btn-main btn-lg btn btn-block" id="bookApp">
+                    Make Payment
                 </button>
 
             </form>
@@ -315,6 +316,51 @@
             checkList3.classList.remove('visible');
         else
             checkList3.classList.add('visible');
+        }
+
+        var amount = 500 * 100;
+        var options = {
+            "key": "rzp_test_MepwFvO3yqZVzO",
+            "key_secret": "UTDNbxQ1TEbhMIYToc13GhlT",
+            "receipt": "order_rcptid_11",
+            "amount": amount,
+            "currency": "INR",
+            "name": "MyMediApp",
+            "description": "Payment for Consultation",
+            "image": "https://cdn.razorpay.com/logos/HEH4MUVEDJcReO_original.png",
+            "handler": function (response) {
+                // this function called when payment done successfully
+                //console.log("success");
+                console.log(response);
+                console.log(response.razorpay_payment_id);
+                window.alert('Payment Successful');
+                bookAppointment();
+                //return to patient_my_appointment if Success
+            },
+
+        };
+
+        var rzp1 = new Razorpay(options);
+        rzp1.on('payment.failed', function (response) {
+
+                console.log(response.error);
+                window.alert('Payment Failed');
+                //this function is called when payment is failed
+                // alert(response.error.code);
+                // alert(response.error.description);
+                // alert(response.error.source);
+                // alert(response.error.step);
+                // alert(response.error.reason);
+                // alert(response.error.metadata.order_id);
+                // alert(response.error.metadata.payment_id);
+                //return to appointment_fix if fail
+
+        });
+
+
+        document.getElementById('bookApp').onclick = function (e) {
+                rzp1.open();
+                e.preventDefault();
         }
 
     </script>

@@ -38,7 +38,8 @@ $(".hamburger").click(function(){
             button.disabled = false;
         }
 
-        document.getElementById("appointment_form").addEventListener("submit", function(event){
+        function bookAppointment()
+        {
             event.preventDefault()
             var app_date = document.getElementById("appDate").value;
             var shift_time = document.getElementById("appTime").value;
@@ -96,7 +97,7 @@ $(".hamburger").click(function(){
                 window.location = '../Patient/patient_dash.html'
                 console.log(response);
               })
-        });
+        }
         
         function appoinment(){}
 
