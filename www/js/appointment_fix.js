@@ -40,7 +40,7 @@ $(".hamburger").click(function(){
 
         function bookAppointment()
         {
-            event.preventDefault()
+            
             var app_date = document.getElementById("appDate").value;
             var shift_time = document.getElementById("appTime").value;
             // shift_time=shift_time.options[shift_time.selectedIndex].parentNode.label;
