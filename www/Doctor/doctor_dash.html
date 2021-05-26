@@ -34,24 +34,22 @@
                     </div>
                 </div>
                 <!-- my consulation --> 
-                <!-- <div class="col-6">
+                <div class="col-6">
                     <div class="image-flip" >
                         <div class="mainflip flip-0">
                             <div class="frontside">
                                 <div class="card">
-                                    <a href="#">
+                                    <a href="utilities.html">
                                     <div class="card-body text-center">
                                         <p><img class=" img-fluid" src="../img/consultation.png" alt="card image"></p>
-                                        <h4 class="card-title" style="font-size:14px;">My Consultations </h4>
-                                        
-            
+                                        <h4 class="card-title" style="font-size:14px;">Utilities </h4>
                                     </div>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <!-- expired appointments -->
                 <div class="col-6">
                     <div class="image-flip" >
@@ -72,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                
+                <!-- user profile -->
                 <div class="col-6">
                     <div class="image-flip" >
                         <div class="mainflip flip-0">
@@ -102,7 +100,7 @@
                 function getProfileData(){
                 var token = localStorage.getItem('token');
 
-                axios.get("http://aqueous-spire-38105.herokuapp.com/p/profile", {
+                axios.get("http://aqueous-spire-38105.herokuapp.com/d/profile", {
                     headers: {
                         authorization: `Bearer ${token}`,
                     }
