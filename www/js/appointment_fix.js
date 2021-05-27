@@ -80,14 +80,16 @@ $(".hamburger").click(function(){
             //var file = document.getElementById("filea").files[0];
 
 
+            var amount = localStorage.getItem('appointmentCharge');
+            amount = parseInt(amount);
 
 
-            var data ={timeSlot:shift_time,date,amount:2000,symptoms,allergy,history}
+            var data ={timeSlot:shift_time,date,amount,symptoms,allergy,history}
 
             console.log(data);
             
             const doctor_id = localStorage.getItem('doctor_id');
-            axios.post( 'http://aqueous-spire-38105.herokuapp.com/p/appointments/book/'+doctor_id,data,{
+             axios.post( 'http://aqueous-spire-38105.herokuapp.com/p/appointments/book/'+doctor_id,data,{
                 headers: {
                   authorization: `Bearer ${localStorage.getItem('token')}`,
                 },

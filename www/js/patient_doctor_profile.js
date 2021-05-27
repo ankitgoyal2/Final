@@ -16,7 +16,11 @@ function getDoctorProfile(){
         document.getElementById("work_experience").innerText = response.data.work_experience+' years';
         document.getElementById("highest_qualification").innerText = response.data.highest_qualification;
         document.getElementById("special").innerText = response.data.speciality;
+        document.getElementById("appointmentCharge").innerText = response.data.appointmentCharge;
         document.getElementById("photo").src='../img/doctor.jfif';
+
+        //save appointmentCharge so that we can use it in appointment_fix files 
+        localStorage.setItem('appointmentCharge',response.data.appointmentCharge);
     })
     .catch((error) => {
         console.log('error is ' + error);
