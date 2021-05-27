@@ -15,7 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <link rel="stylesheet" href="../css/forAll.css">
-    <title>Leave Utility</title>
+    <title>Total Earnings</title>
     <link rel="icon" type="image/png" href="../img/doctorIcon.png">
 
 
@@ -34,17 +34,17 @@
 
     <div class="centre_box">
 
-        <div class="signin-form">
+        <!-- <div class="signin-form">
             <form onsubmit="test();" method="post">
                 <!-- <img src="../img\doctor.jfif" id="profile_pic"> -->
-                <h2>Leave</h2>
+                <!-- <h2>Leave</h2>
                 <div class="form-group">
                     <!-- <input type="email" class="form-control" placeholder="Email ID" required id="email" /> -->
-                    
-                    <p id="status"></p>
+
+                <!--  <p id="status"></p>
                     <input type="hidden" id="prevStatus">
 
-                    
+
                 </div>
                 <!-- <div class="form-group">
                     <select class="form-control" id="isAvailable" required>
@@ -52,13 +52,13 @@
                         <option value='false'>On Leave</option>
                     </select>
                 </div> -->
-                <div class="form-group">
+            <!--  <div class="form-group">
                     <button id="leaveButton" type="submit" class="btn btn-main btn-lg btn-block">Change Status</button>
                 </div>
-                
+
 
             </form>
-        </div>
+        </div>  -->
     </div>
 
     </div>
@@ -67,29 +67,29 @@
     <script type="text/javascript" src="../cordova.js"></script>
     <script>
 
-        axios.get('http://aqueous-spire-38105.herokuapp.com/d/available', {
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            }).then(function (response) {
+        // axios.get('http://aqueous-spire-38105.herokuapp.com/d/available', {
+        //     headers: {
+        //         authorization: `Bearer ${localStorage.getItem('token')}`,
+        //     },
+        // }).then(function (response) {
 
-                const { isAvailable } = response.data;
-                updateText(isAvailable);
-                console.log(response);
-            })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                })
+        //     const { isAvailable } = response.data;
+        //     updateText(isAvailable);
+        //     console.log(response);
+        // })
+        //     .catch(function (error) {
+        //         // handle error
+        //         console.log(error);
+        //     })
 
         function test() {
 
             event.preventDefault();
-            
+
             const available = document.getElementById('prevStatus').value;
 
             var isAvailable;
-            if(available=='true') 
+            if (available == 'true')
                 isAvailable = false;
             else
                 isAvailable = true;
@@ -100,32 +100,32 @@
                     authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             })
-            .then(res => {
-                console.log(res);
-                updateText(isAvailable);
-                //window.alert(res.data.message);
-            })
-            .catch(err => {
-                console.log(err);
-                window.alert('Some error occured');
-            });
+                .then(res => {
+                    console.log(res);
+                    updateText(isAvailable);
+                    //window.alert(res.data.message);
+                })
+                .catch(err => {
+                    console.log(err);
+                    window.alert('Some error occured');
+                });
 
         }
 
-        function updateText(isAvailable){
+        function updateText(isAvailable) {
 
             if (isAvailable) {
-                document.getElementById('status').innerText = "Available";
+                document.getElementById('status').innerText = "You are Not on Leave";
             } else {
-                document.getElementById('status').innerText = "On Leave";
+                document.getElementById('status').innerText = "You are on Leave";
             }
 
             document.getElementById('prevStatus').value = isAvailable;
         }
 
-       
+
     </script>
-    
+
 </body>
 
 </html>

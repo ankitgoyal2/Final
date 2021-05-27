@@ -15,7 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <link rel="stylesheet" href="../css/forAll.css">
-    <title>Leave Utility</title>
+    <title>Change Appointment Charge</title>
     <link rel="icon" type="image/png" href="../img/doctorIcon.png">
 
 
@@ -37,25 +37,19 @@
         <div class="signin-form">
             <form onsubmit="test();" method="post">
                 <!-- <img src="../img\doctor.jfif" id="profile_pic"> -->
-                <h2>Leave</h2>
+                <h3>Appointment Charge</h3>
                 <div class="form-group">
                     <!-- <input type="email" class="form-control" placeholder="Email ID" required id="email" /> -->
-                    
-                    <p id="status"></p>
-                    <input type="hidden" id="prevStatus">
 
-                    
+                    <p id="currentCharge"></p>
                 </div>
-                <!-- <div class="form-group">
-                    <select class="form-control" id="isAvailable" required>
-                        <option value='true'>Available</option>
-                        <option value='false'>On Leave</option>
-                    </select>
-                </div> -->
                 <div class="form-group">
-                    <button id="leaveButton" type="submit" class="btn btn-main btn-lg btn-block">Change Status</button>
+                    <input type="number" class="form-control" placeholder="New Appointment Charge" required id="newCharge" max="5000" min="500">
                 </div>
-                
+                <div class="form-group">
+                    <button id="save" type="submit" class="btn btn-main btn-lg btn-block">Save</button>
+                </div>
+
 
             </form>
         </div>
@@ -67,43 +61,40 @@
     <script type="text/javascript" src="../cordova.js"></script>
     <script>
 
-        axios.get('http://aqueous-spire-38105.herokuapp.com/d/available', {
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            }).then(function (response) {
+        axios.get('http://aqueous-spire-38105.herokuapp.com/d/appointmentCharge', {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        }).then(function (response) {
 
-                const { isAvailable } = response.data;
-                updateText(isAvailable);
-                console.log(response);
-            })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                })
+            const { appointmentCharge } = response.data;
+            updateText(appointmentCharge);
+            //console.log(response);
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
 
         function test() {
 
             event.preventDefault();
-            
-            const available = document.getElementById('prevStatus').value;
 
-            var isAvailable;
-            if(available=='true') 
-                isAvailable = false;
-            else
-                isAvailable = true;
+            var appointmentCharge = document.getElementById('newCharge').value;
 
-            data = { isAvailable };
-            axios.put('http://aqueous-spire-38105.herokuapp.com/d/available', data, {
+            appointmentCharge = parseInt(appointmentCharge);
+
+            data = { appointmentCharge };
+            axios.put('http://aqueous-spire-38105.herokuapp.com/d/appointmentCharge', data, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             })
             .then(res => {
+                updateText(appointmentCharge);
                 console.log(res);
-                updateText(isAvailable);
-                //window.alert(res.data.message);
+                window.alert(res.data.message);
+                document.getElementById('newCharge').value = '';
             })
             .catch(err => {
                 console.log(err);
@@ -112,20 +103,15 @@
 
         }
 
-        function updateText(isAvailable){
+        function updateText(appointmentCharge) {
 
-            if (isAvailable) {
-                document.getElementById('status').innerText = "Available";
-            } else {
-                document.getElementById('status').innerText = "On Leave";
-            }
-
-            document.getElementById('prevStatus').value = isAvailable;
+            var currentCharge = document.getElementById('currentCharge');
+            currentCharge.innerText = appointmentCharge;
         }
 
-       
+
     </script>
-    
+
 </body>
 
 </html>
