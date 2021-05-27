@@ -31,96 +31,52 @@
 
 
 <body>
-
     <div class="centre_box">
 
-        <!-- <div class="signin-form">
+        <div class="signin-form">
             <form onsubmit="test();" method="post">
-                <!-- <img src="../img\doctor.jfif" id="profile_pic"> -->
-                <!-- <h2>Leave</h2>
-                <div class="form-group">
-                    <!-- <input type="email" class="form-control" placeholder="Email ID" required id="email" /> -->
-
-                <!--  <p id="status"></p>
-                    <input type="hidden" id="prevStatus">
-
-
-                </div>
-                <!-- <div class="form-group">
-                    <select class="form-control" id="isAvailable" required>
-                        <option value='true'>Available</option>
-                        <option value='false'>On Leave</option>
-                    </select>
-                </div> -->
-            <!--  <div class="form-group">
-                    <button id="leaveButton" type="submit" class="btn btn-main btn-lg btn-block">Change Status</button>
-                </div>
-
-
+                
+                <h2>Total Earnings</h2>
+                   
+                    <div class="row">
+                        <div class="form-group col-sm-12">
+                            <p class="form-control" id="currency"><a id="earnings" >Loading...</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button id="leaveButton" type="submit" class="btn btn-main btn-lg btn-block">Go Back</button>
+                    </div>
+            
             </form>
-        </div>  -->
+        </div>
     </div>
 
-    </div>
-    </div>
+
 
     <script type="text/javascript" src="../cordova.js"></script>
     <script>
 
-        // axios.get('http://aqueous-spire-38105.herokuapp.com/d/available', {
-        //     headers: {
-        //         authorization: `Bearer ${localStorage.getItem('token')}`,
-        //     },
-        // }).then(function (response) {
+        axios.get('http://aqueous-spire-38105.herokuapp.com/d/totalIncome', {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+        .then(function (response) {
 
-        //     const { isAvailable } = response.data;
-        //     updateText(isAvailable);
-        //     console.log(response);
-        // })
-        //     .catch(function (error) {
-        //         // handle error
-        //         console.log(error);
-        //     })
+            const { total_income } = response.data;
+            document.getElementById('earnings').innerText = '₹'+total_income;
+           
+            console.log(response);
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
 
         function test() {
-
             event.preventDefault();
-
-            const available = document.getElementById('prevStatus').value;
-
-            var isAvailable;
-            if (available == 'true')
-                isAvailable = false;
-            else
-                isAvailable = true;
-
-            data = { isAvailable };
-            axios.put('http://aqueous-spire-38105.herokuapp.com/d/available', data, {
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            })
-                .then(res => {
-                    console.log(res);
-                    updateText(isAvailable);
-                    //window.alert(res.data.message);
-                })
-                .catch(err => {
-                    console.log(err);
-                    window.alert('Some error occured');
-                });
-
-        }
-
-        function updateText(isAvailable) {
-
-            if (isAvailable) {
-                document.getElementById('status').innerText = "You are Not on Leave";
-            } else {
-                document.getElementById('status').innerText = "You are on Leave";
-            }
-
-            document.getElementById('prevStatus').value = isAvailable;
+            window.location = 'utilities.html';
         }
 
 
