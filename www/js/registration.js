@@ -23,7 +23,64 @@
     }
   }
 
-function data(){
+  const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
+
+var resizeImage = function (settings) {
+    var file = settings.file;
+    var maxSize = settings.maxSize;
+    var reader = new FileReader();
+    var image = new Image();
+    var canvas = document.createElement('canvas');
+    var dataURItoBlob = function (dataURI) {
+        var bytes = dataURI.split(',')[0].indexOf('base64') >= 0 ?
+            atob(dataURI.split(',')[1]) :
+            unescape(dataURI.split(',')[1]);
+        var mime = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        var max = bytes.length;
+        var ia = new Uint8Array(max);
+        for (var i = 0; i < max; i++)
+            ia[i] = bytes.charCodeAt(i);
+        return new Blob([ia], { type: mime });
+    };
+    var resize = function () {
+        var width = image.width;
+        var height = image.height;
+        if (width > height) {
+            if (width > maxSize) {
+                height *= maxSize / width;
+                width = maxSize;
+            }
+        } else {
+            if (height > maxSize) {
+                width *= maxSize / height;
+                height = maxSize;
+            }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+        var dataUrl = canvas.toDataURL('image/jpeg');
+        return dataURItoBlob(dataUrl);
+    };
+    return new Promise(function (ok, no) {
+        if (!file.type.match(/image.*/)) {
+            no(new Error("Not an image"));
+            return;
+        }
+        reader.onload = function (readerEvent) {
+            image.onload = function () { return ok(resize()); };
+            image.src = readerEvent.target.result;
+        };
+        reader.readAsDataURL(file);
+    });
+};
+
+async function data(){
         
     //Disabling Button and show spinner
     event.preventDefault();
@@ -53,9 +110,38 @@ function data(){
     // var genders = document.getElementsByName("GENDER");
     // var selectedGender;
 
+    var profile_pic = document.getElementById("file").files[0];
+
+    //compress image
+    const config = {
+      file: profile_pic,
+      maxSize: 400
+    };
+    profile_pic = await resizeImage(config)
+
+    //filesize in kb
+    // var filesize = ((profile_pic.size/1024)).toFixed(4);
+    // console.log('image size '+filesize + ' Kb');
+    // if(filesize>300){
+    //   window.alert('File size exeeded 300 kb');
+    //   return
+    // }
+
+    var profile_picBase64 = await toBase64(profile_pic).catch(e => Error(e));
+    if(profile_picBase64 instanceof Error) {
+        console.log('Error: ', profile_picBase64.message);
+        return;
+    }
+
+    profile_picBase64 = profile_picBase64.split(",")[1];
+
     var data = {
       name : fname+' '+lastname,
       email ,
+      image : {
+        data : profile_picBase64,
+        imageType : profile_pic.type,
+      },
       password : pass,
       mobile : phone,
       address : {

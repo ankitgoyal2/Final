@@ -59,7 +59,7 @@
                 <div class="card">
                     <div class="row justify-content-center">
 
-                        <img id="photo" src="../img\user_pic.png" class="rounded-circle card-img-top" />
+                        <img id="photo"  src="../img/user_pic.png"   class="rounded-circle card-img-top" />
 
                     </div>
 
@@ -147,7 +147,10 @@
                 document.getElementById("email").innerText = response.data.email;
                 document.getElementById("city").innerText = response.data.address.city;
                 document.getElementById("state").innerText = response.data.address.state;
-                //console.log("data fixed successfully");
+                if (typeof response.data.imgType !== 'undefined'){
+                    document.getElementById("photo").src = `data:${response.data.imgType};base64,${response.data.imgStr}`;
+                }
+                 //console.log("data fixed successfully");
             })
             .catch((error)=>{
                 console.log('error is '+ error);
