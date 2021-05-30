@@ -155,6 +155,9 @@
                 document.getElementById("highest_qualification").innerText = response.data.highest_qualification;
                 document.getElementById("special").innerText = response.data.speciality;
                 document.getElementById("work_experience").innerText = response.data.work_experience+' years';
+                if (typeof response.data.imgType !== 'undefined') {
+                    document.getElementById("photo").src = `data:${response.data.imgType};base64,${response.data.imgStr}`;
+                }
 
                 // console.log("data fixed successfully");
             })
