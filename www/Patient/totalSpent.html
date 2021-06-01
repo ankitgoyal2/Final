@@ -57,8 +57,7 @@
     <script type="text/javascript" src="../cordova.js"></script>
     <script>
 
-        // axios.get('http://aqueous-spire-38105.herokuapp.com/p/totalSpent', {
-        axios.get('http://localhost:3000/p/totalSpent', {
+        axios.get('http://aqueous-spire-38105.herokuapp.com/p/totalSpent', {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('token')}`,
             },
