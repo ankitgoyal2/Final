@@ -16,10 +16,8 @@ function getDoctorProfile(){
         document.getElementById("work_experience").innerText = response.data.work_experience+' years';
         document.getElementById("highest_qualification").innerText = response.data.highest_qualification;
         document.getElementById("special").innerText = response.data.speciality;
-        // document.getElementById("photo").src='../img/doctor.jfif';
-        if (typeof response.data.imgType !== 'undefined'){
-                document.getElementById("photo").src = `data:${response.data.imgType};base64,${response.data.imgStr}`;
-        }
+        if(response.data.image!=undefined)
+            document.getElementById("photo").src=response.data.image;
     })
     .catch((error) => {
         console.log('error is ' + error);

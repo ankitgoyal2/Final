@@ -17,11 +17,8 @@ function getDoctorProfile(){
         document.getElementById("highest_qualification").innerText = response.data.highest_qualification;
         document.getElementById("special").innerText = response.data.speciality;
         document.getElementById("appointmentCharge").innerText = response.data.appointmentCharge;
-        // document.getElementById("photo").src='../img/doctor.jfif';
-
-        if (typeof response.data.imgType !== 'undefined'){
-                document.getElementById("photo").src = `data:${response.data.imgType};base64,${response.data.imgStr}`;
-        }
+        if(response.data.image!=undefined)
+            document.getElementById("photo").src=response.data.image;
 
         //save appointmentCharge so that we can use it in appointment_fix files 
         localStorage.setItem('appointmentCharge',response.data.appointmentCharge);

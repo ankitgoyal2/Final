@@ -18,14 +18,17 @@
         const data = response.data.doctors;
         for(let i=0;i<data.length;i++)
         {
-            const { name, speciality, highest_qualification, _id} = data[i];
+            const { name, speciality, highest_qualification, _id, image} = data[i];
             const outerDiv = document.createElement('div');
             outerDiv.classList.add('col-6');
             const innerDiv = document.createElement('div');
             innerDiv.classList.add('text-center');
             const docImage = document.createElement('img')
             docImage.classList.add('rounded-circle');
-            docImage.src = '../img\\doctor.jfif';
+            if(image != undefined)
+                docImage.src = image;
+            else
+                docImage.src = '../img\\doctor.jfif';
             const docName = document.createElement('h5');
             docName.innerText = name;
             const buttonLink = document.createElement('a');
