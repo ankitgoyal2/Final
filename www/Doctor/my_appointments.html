@@ -87,7 +87,7 @@
 
           document.getElementById("ap_list").innerHTML +=
             `<div class="col-sm-6 col-md-6">
-                <div class="card" >
+                <div class="card" ${appointment.isEmergency == true ? 'style="background-color: #FF6347;"' : ''}>
                     <div class="card-body">
                       <h4 class="card-title text-center"><strong>${appointment.patient.name}</strong></h4>
                       <div class="container">
@@ -103,6 +103,10 @@
                         <dt class="col-7">Allergy:</dt>
                         <dd class="col-5"> ${appointment.allergy}</dd>
                         </dl>
+                        <dl class="row" ${appointment.description === '' ? 'style="display:none";' : ''}>
+                        <dt class="col-7" >Description:</dt>
+                        <dd class="col-5"> ${appointment.description}</dd>
+                        </dl>
                         <dl class="row">
                         <dt class="col-7">Date:</dt>
                         <dd class="col-5"> ${appointment.date}</dd>
@@ -117,7 +121,7 @@
                         </dl>
 
                         <div class="row">
-                        <a  href='https://morning-hollows-24270.herokuapp.com/${appointment.doctor}' class="btn btn-main col-12" target="_blank">Start Consultation</a>
+                        <a  href='https://morning-hollows-24270.herokuapp.com/${appointment.doctor}' ${appointment.isEmergency == true ? 'style="background-color: #220901;"' : ''} class="btn btn-main col-12" target="_blank">Start Consultation</a>
                         <div>
 
                         
@@ -125,7 +129,7 @@
                       </div>
                     </div>
                     <div class="row" style="margin-top:10px;">
-                          <button onclick="markCompleted('${appointment._id}')"  class="btn btn-main col-12">Mark Completed</button>
+                          <button onclick="markCompleted('${appointment._id}')"  ${appointment.isEmergency == true ? 'style="background-color: #220901;"' : ''} class="btn btn-main col-12">Mark Completed</button>
                           <div>
                     </div>
             </div>`;
