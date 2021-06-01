@@ -98,7 +98,7 @@
         count= count+1;
         document.getElementById("ap_list").innerHTML +=
           `<div class="col-sm-6 col-md-6">
-              <div class="card" >
+              <div class="card" ${appointment.isEmergency == true ? 'style="background-color: #FF6347;"' : ''}>
                   <div class="card-body">
                     <h4 class="card-title text-center"><strong>Appointment ${count}</strong></h4>
                     <div class="container">
@@ -114,6 +114,10 @@
                       <dt class="col-7">Allergy:</dt>
                       <dd class="col-5"> ${appointment.allergy}</dd>
                       </dl>
+                      <dl class="row" ${appointment.description === '' ? 'style="display:none";' : ''}>
+                      <dt class="col-7" >Description:</dt>
+                      <dd class="col-5"> ${appointment.description}</dd>
+                      </dl>
                       <dl class="row">
                       <dt class="col-7">Doctor's Name:</dt>
                       <dd class="col-5"> ${appointment.doctor.name}</dd>
@@ -127,14 +131,12 @@
                       <dd class="col-5"> ${appointment.timeSlot}</dd>
                       </dl>
                     </div>
-                      <div class="text-center">
-                      <a  href='https://morning-hollows-24270.herokuapp.com/${appointment.doctor._id}' class="btn btn-main col-12" target="_blank">Start Consultation</a>
+                      <div class="text-center" >
+                      <a  href='https://morning-hollows-24270.herokuapp.com/${appointment.doctor._id}' ${appointment.isEmergency == true ? 'style="background-color: #220901;"' : ''}  class="btn btn-main col-12" target="_blank">Start Consultation</a>
                       </div>
                     </div>
                 </div>
           </div>`;
-
-
       })
       console.log(no_a)
       if (no_a === true) {

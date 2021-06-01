@@ -98,7 +98,7 @@
                     count = count + 1;
                     document.getElementById("ap_list").innerHTML +=
                         `<div class="col-sm-6 col-md-6">
-              <div class="card" >
+              <div class="card" ${appointment.isEmergency == true ? 'style="background-color: #FF6347;"' : ''}>
                   <div class="card-body">
                     <h4 class="card-title text-center"><strong>Appointment ${count}</strong></h4>
                     <div class="container">
@@ -113,6 +113,10 @@
                       <dl class="row">
                       <dt class="col-7">Allergy:</dt>
                       <dd class="col-5"> ${appointment.allergy}</dd>
+                      </dl>
+                      <dl class="row" ${appointment.description === '' ? 'style="display:none";' : ''}>
+                      <dt class="col-7" >Description:</dt>
+                      <dd class="col-5"> ${appointment.description}</dd>
                       </dl>
                       <dl class="row">
                       <dt class="col-7">Doctor's Name:</dt>
