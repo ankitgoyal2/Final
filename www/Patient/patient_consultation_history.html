@@ -83,7 +83,7 @@
         console.log('token is ' + token);
         var no_a = true;
 
-        axios.get("http://aqueous-spire-38105.herokuapp.com/p/appointments", {
+        axios.get("http://aqueous-spire-38105.herokuapp.com/p/appointments/completed", {
             headers: {
                 authorization: `Bearer ${token}`,
             }
