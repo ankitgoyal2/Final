@@ -271,6 +271,23 @@
                 -->
                 </div>
 
+                <div class="form-group">
+                        <div class="row">
+                            <div class="col" >
+                                <input type="checkbox" id="toggleDesc" onclick="showDesc()" name="toggleDesc">
+                                <label for="toggleDesc"> Tell Doctor in your words(optional)</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <textarea id="description" name="description" placeholder="Description your problem" class="form-control" rows="4"
+                                    style="border-radius: 5px; display:none; width: 100%; border-color: silver;"></textarea>
+                            </div>
+                        </div>
+                    
+                </div>
+
                 <button class="btn-main btn-lg btn btn-block" id="bookApp">
                     Make Payment
                 </button>
@@ -316,6 +333,20 @@
             checkList3.classList.remove('visible');
         else
             checkList3.classList.add('visible');
+        }
+
+
+        function showDesc() {
+
+                var checkBox = document.getElementById("toggleDesc");
+                var Description = document.getElementById("description");
+
+                // If the checkbox is checked, display the Description
+                if (checkBox.checked == true) {
+                    Description.style.display = "block";
+                } else {
+                    Description.style.display = "none";
+                }
         }
 
         var amount = localStorage.getItem('appointmentCharge');

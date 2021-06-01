@@ -83,8 +83,9 @@ $(".hamburger").click(function(){
             var amount = localStorage.getItem('appointmentCharge');
             amount = parseInt(amount);
 
+            var description = document.getElementById("description").value;
 
-            var data ={timeSlot:shift_time,date,amount,symptoms,allergy,history}
+            var data ={timeSlot:shift_time,date,amount,symptoms,allergy,history,description};
 
             console.log(data);
             

@@ -95,7 +95,7 @@
                             <div class="row">
 
                                 <div class="col" >
-                                    <textarea id="symptoms" name="symptoms" placeholder="Description" class="form-control" rows="4"
+                                    <textarea id="description" name="description" placeholder="Description" class="form-control" rows="4"
                                         style="border-radius: 5px; display:none; width: 100%; border-color: silver;"></textarea>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         var choice = -1;
-        var symptoms = '';
+        var description = '';
 
         function getDate(){
             var today = new Date();
@@ -144,19 +144,21 @@
 
             event.preventDefault();
             if(choice==2){
-                symptoms = document.getElementById("symptoms").value;
+                description = document.getElementById("description").value;
             }
 
-            if(choice == -1||symptoms==''){
+            if(choice == -1|| description==''){
                 window.alert("Select one option");
             }
             else{
 
-                console.log('symptoms is '+ symptoms);
+                console.log('description is '+ description);
 
                 var data = {
-                    symptoms,
+                    description,
+                    isEmergency : true,
                     amount: 0,
+                    symptoms: "Emergency",
                     allergy: "Emergency",
                     history: "Emergency",
                     timeSlot: "Emergency",
@@ -195,8 +197,8 @@
                 document.getElementById(id).style.background = "#007bff";
 
                 choice = 1;
-                symptoms = document.getElementById(id).innerText;
-                console.log(symptoms);
+                description = document.getElementById(id).innerText;
+                console.log(description);
             }
 
             
@@ -219,14 +221,14 @@
         function showDesc() {             
                 
                 var checkBox = document.getElementById("toggleDesc");
-                var Description = document.getElementById("symptoms");
+                var Description = document.getElementById("description");
 
                 // If the checkbox is checked, display the Description
                 if (checkBox.checked == true) {
                     disableAll();
                     Description.style.display = "block";
                     choice = 2;
-                    symptoms = '';
+                    description = '';
                 } else {
                     enableAll();
                     Description.style.display = "none";
