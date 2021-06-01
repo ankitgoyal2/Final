@@ -132,16 +132,13 @@ async function data(){
         console.log('Error: ', profile_picBase64.message);
         return;
     }
+    //console.log(profile_picBase64);
 
-    profile_picBase64 = profile_picBase64.split(",")[1];
 
     var data = {
       name : fname+' '+lastname,
       email ,
-      image : {
-        data : profile_picBase64,
-        imageType : profile_pic.type,
-      },
+      image : profile_picBase64,
       password : pass,
       mobile : phone,
       address : {

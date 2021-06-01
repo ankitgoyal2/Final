@@ -110,31 +110,6 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <script>
-        // const url = `https://connectingit.in/ords/shoppergoldeneye/core/drprofile_get/${window.localStorage.getItem('email')}`
-
-        // fetch(url)
-        // .then(res=>res.json())
-        // .then(({items})=>{
-
-        // document.getElementById("name").innerText = items[0].doctor_name;
-        // document.getElementById("phone").innerText =  items[0].contact;
-        // document.getElementById("email").innerText =  items[0].email;
-
-        // document.getElementById("special").innerText =  items[0].speciality;
-        // document.getElementById("experience").innerText =  items[0].experience;
-
-
-        // })
-
-        // .catch(err=>alert(err.message))
-
-        // //document.getElementById("photo").src=`https://connectingit.in/ords/shoppergoldeneye/core/patientpicture/${urlParams.get('email')}`
-        // document.getElementById("photo").src=`https://connectingit.in/ords/shoppergoldeneye/core/getprofileimage/${window.localStorage.getItem('email')}`
-
-        // var photo = document.getElementById('photo');
-        // var baseStr64 = localStorage.getItem('profile_pic');
-        // photo.setAttribute('src', "data:image/jpg;base64," + baseStr64);
-
         
         
         
@@ -155,11 +130,9 @@
                 document.getElementById("highest_qualification").innerText = response.data.highest_qualification;
                 document.getElementById("special").innerText = response.data.speciality;
                 document.getElementById("work_experience").innerText = response.data.work_experience+' years';
-                if (typeof response.data.imgType !== 'undefined') {
-                    document.getElementById("photo").src = `data:${response.data.imgType};base64,${response.data.imgStr}`;
+                if (response.data.image != 'undefined') {
+                    document.getElementById("photo").src = response.data.image;
                 }
-
-                // console.log("data fixed successfully");
             })
             .catch((error) => {
                 console.log('error is ' + error);

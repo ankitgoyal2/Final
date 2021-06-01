@@ -107,7 +107,6 @@ async function data(){
           console.log('Error: ', profile_picBase64.message);
           return;
       }
-     profile_picBase64 = profile_picBase64.split(",")[1];
 
 //==================================================================================
      
@@ -126,7 +125,6 @@ async function data(){
           return;
       }
 
-      highestQualiImgBase64 = highestQualiImgBase64.split(",")[1];
 //==================================================================================
 
    
@@ -134,10 +132,7 @@ async function data(){
     var data = {
       name : fname+' '+lastname,
       email ,
-      image : {
-        data : profile_picBase64,
-        imageType : profile_pic.type,
-      },
+      image : profile_picBase64,
       password : pass,
       mobile : phone,
       address : {
@@ -146,10 +141,7 @@ async function data(){
         state,
       },
       highest_qualification,
-      qualification_image :{
-        data : highestQualiImgBase64,
-        imageType : highestQualiImg.type,
-      },
+      qualification_image :highestQualiImgBase64,
       work_experience,
       registration_number : registrationNumber,
       speciality : doctorType,
