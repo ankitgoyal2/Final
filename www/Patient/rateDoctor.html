@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../css/login2.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="../css/forAll.css">
+    <title>Rate Doctor</title>
+    <link rel="icon" type="image/png" href="../img/patientIcon.png">
+
+
+</head>
+
+<style>
+    .signin-form h2:before,
+    .signin-form h2:after {
+        width: 10%;
+    }
+</style>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+<body>
+    <div class="centre_box">
+
+        <div class="signin-form">
+            <form onsubmit="test();" method="post">
+
+                <h2>Rate Doctor</h2>
+
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <!-- <p class="form-control" id="currency"><a id="earnings">Loading...</a></p> -->
+                        <!-- <label for="rating">Select Doctor Rating</label> -->
+                        <!-- <input type="checkbox" name="rating" id="rating"> -->
+                        <select class="form-control" id="rating" required>
+                            <option selected>Select Doctor Rating</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-main btn-lg btn-block">Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="../cordova.js"></script>
+    <script>
+
+        
+
+        function test() {
+            event.preventDefault();
+            var rating = document.getElementById('rating').value;
+            if(rating=='Select Doctor Rating'){
+                window.alert('Choose an option');
+                return;
+            }
+
+            rating = parseInt(rating);
+            //console.log(typeof rating);
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const appointmentId = urlParams.get('appointmentId');
+            
+            var data = { appointmentId, docRating:rating };
+            //console.log(data);
+
+            axios.put("http://aqueous-spire-38105.herokuapp.com/p/appointments/rateDoctor", data, {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`,
+                }
+            })
+                .then(res => {
+                    alert(res.data.message);
+                    window.location = 'patient_consultation_history.html'
+                })
+                .catch(err => {
+                    window.alert('Some error occured');
+                    console.log(err);
+                })
+        }
+
+
+    </script>
+
+</body>
+
+</html>

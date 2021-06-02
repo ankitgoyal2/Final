@@ -131,8 +131,8 @@
                       <dd class="col-5"> ${appointment.timeSlot}</dd>
                       </dl>
                     </div>
-                      <div class="text-center">
-                      
+                      <div class="text-center" ${appointment.docRating != 0 ? 'style="display:none";' : ''}>
+                      <a  ${appointment.isEmergency == true ? 'style="background-color: #220901;"' : ''}  class="btn btn-main col-12" onclick="rateDoc('${appointment._id}')"  target="_blank">Rate the Doctor</a>
                       </div>
                     </div>
                 </div>
@@ -155,6 +155,11 @@
 
             })
             .catch(err => alert(err.message))
+
+
+            function rateDoc(appointmentId) {
+                window.location = 'rateDoctor.html?appointmentId=' + appointmentId;
+            }
 
     </script>
 
