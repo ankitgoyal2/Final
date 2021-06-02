@@ -11,11 +11,10 @@ function getDoctorProfile(){
     .then((response) => {
         console.log(response);
         document.getElementById("name").innerText = response.data.name;
-        document.getElementById("phone").innerText = response.data.mobile;
-        document.getElementById("email").innerText = response.data.email;
         document.getElementById("work_experience").innerText = response.data.work_experience+' years';
         document.getElementById("highest_qualification").innerText = response.data.highest_qualification;
         document.getElementById("special").innerText = response.data.speciality;
+        document.getElementById("rating").innerText = response.data.rating+' ⭐';
         if(response.data.image!=undefined)
             document.getElementById("photo").src=response.data.image;
     })

@@ -18,7 +18,7 @@
         const data = response.data.doctors;
         for(let i=0;i<data.length;i++)
         {
-            const { name, speciality, highest_qualification, _id, image} = data[i];
+            const { name, speciality, highest_qualification, _id, image, rating} = data[i];
             const outerDiv = document.createElement('div');
             outerDiv.classList.add('col-6');
             const innerDiv = document.createElement('div');
@@ -31,6 +31,8 @@
                 docImage.src = '../img\\doctor.jfif';
             const docName = document.createElement('h5');
             docName.innerText = name;
+            const docRating = document.createElement('p');
+            docRating.innerText = 'Rating: '+rating+' ⭐';
             const buttonLink = document.createElement('a');
             buttonLink.href = 'patient_emergency_doctor_profile.html?doctor_id=' + _id;
             const buttonClick = document.createElement('button')
@@ -42,6 +44,8 @@
 
             innerDiv.appendChild( docImage );
             innerDiv.appendChild( docName );
+            innerDiv.appendChild( docRating );
+
             innerDiv.appendChild( buttonLink );
 
             outerDiv.appendChild(innerDiv);
